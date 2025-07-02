@@ -15,13 +15,14 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
+import { NavLink } from "react-router-dom";
 
-export function NavMain({
+export function Overview({
   items
 }) {
   return (
     (<SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>Get Started</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible
@@ -41,13 +42,13 @@ export function NavMain({
               <CollapsibleContent>
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title} className='hover:bg-[#063e3e]'>
-                      <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
+                    <NavLink to={subItem.url} className={({ isActive }) => `${isActive ? "bg-[#063e3e]" : ""} rounded-md`}>
+                      <SidebarMenuSubItem key={subItem.title} className='hover:bg-[#063e3e] rounded-md'>
+                        <SidebarMenuSubButton asChild>
                           <span>{subItem.title}</span>
-                        </a>
-                      </SidebarMenuSubButton>
-                    </SidebarMenuSubItem>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    </NavLink>
                   ))}
                 </SidebarMenuSub>
               </CollapsibleContent>

@@ -11,7 +11,9 @@ import {
   Settings2,
   SquareTerminal,
 } from "lucide-react"
-import { NavMain } from "@/components/nav-main"
+import { RiTailwindCssFill } from "react-icons/ri";
+import { SiShadcnui, SiMui, SiPrimereact, SiChakraui, SiAntdesign} from "react-icons/si";
+import { UiLibraryMenu } from "@/components/uilibrarymenu"
 import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
@@ -22,6 +24,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import { Overview } from "../overview"
 
 // This is sample data.
 const data = {
@@ -47,88 +50,132 @@ const data = {
       plan: "Free",
     },
   ],
-  navMain: [
+  overview: [
     {
-      title: "Playground",
+      title: "Overview",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
           title: "Introduction",
+          url: "/introduction",
+        },
+      ]
+    }
+  ],
+  navMain: [
+    {
+      title: "Tailwind CSS",
+      url: "#",
+      icon: RiTailwindCssFill,
+      isActive: true,
+      items: [
+        {
+          title: "Overview",
+          url: "/tailwindoverview",
+        },
+        {
+          title: "Installation",
+          url: "/tailwindinstallation",
+        },
+        {
+          title: "Usage Example",
+          url: "/tailwindusage",
+        },
+      ],
+    },
+    {
+      title: "Shadcn UI",
+      url: "#",
+      icon: SiShadcnui,
+      items: [
+        {
+          title: "Overview",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "Installation",
           url: "#",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
+          title: "Installation",
           url: "#",
         },
       ],
     },
     {
-      title: "Settings",
+      title: "Material UI",
       url: "#",
-      icon: Settings2,
+      icon: SiMui,
       items: [
         {
-          title: "General",
+          title: "Overview",
           url: "#",
         },
         {
-          title: "Team",
+          title: "Installation",
           url: "#",
         },
         {
-          title: "Billing",
+          title: "Usage Example",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "PrimeReact",
+      url: "#",
+      icon: SiPrimereact,
+      items: [
+        {
+          title: "Overview",
           url: "#",
         },
         {
-          title: "Limits",
+          title: "Installation",
+          url: "#",
+        },
+        {
+          title: "Usage Example",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Chakra UI",
+      url: "#",
+      icon: SiChakraui,
+      items: [
+        {
+          title: "Overview",
+          url: "#",
+        },
+        {
+          title: "Installation",
+          url: "#",
+        },
+        {
+          title: "Usage Example",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Ant Design",
+      url: "#",
+      icon: SiAntdesign,
+      items: [
+        {
+          title: "Overview",
+          url: "#",
+        },
+        {
+          title: "Installation",
+          url: "#",
+        },
+        {
+          title: "Usage Example",
           url: "#",
         },
       ],
@@ -162,7 +209,8 @@ export function AppSidebar({
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <Overview items={data.overview}/>
+        <UiLibraryMenu items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
