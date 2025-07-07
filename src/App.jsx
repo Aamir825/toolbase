@@ -4,10 +4,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { Layout } from "./components/Layout/Layout"
 import { Home } from "./pages/Home/Home"
 import { Login } from "./pages/Login/Login"
-import Introduction from "./pages/Introduction/Introduction"
 import TailwindOverview from "./pages/Tailwind/TailwindOverview"
 import TailwindInstallation from "./pages/Tailwind/TailwindInstallation"
 import TailwindUsage from "./pages/Tailwind/TailwindUsage"
+import { ShadcnOverview } from "./pages/Shadcn/ShadcnOverview"
+import { ShadcnInstallation } from "./pages/Shadcn/ShadcnInstallation"
+import { ShadcnUsage } from "./pages/Shadcn/ShadcnUsage"
 
 function App() {
 
@@ -21,10 +23,6 @@ function App() {
           element: <Home/>
         },
         {
-          path: "introduction",
-          element: <Introduction/>
-        },
-        {
           path: "tailwindoverview",
           element: <TailwindOverview/>
         },
@@ -35,7 +33,19 @@ function App() {
         {
           path: "tailwindusage",
           element: <TailwindUsage/>
-        }
+        },
+        {
+          path: "shadcnoverview",
+          element: <ShadcnOverview/>
+        },
+        {
+          path: "shadcninstallation",
+          element: <ShadcnInstallation/>
+        },
+        {
+          path: "shadcnusage",
+          element: <ShadcnUsage/>
+        },
       ]
     }
   ])

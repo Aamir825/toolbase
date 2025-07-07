@@ -59,7 +59,7 @@ const data = {
       items: [
         {
           title: "Introduction",
-          url: "/introduction",
+          url: "/",
         },
       ]
     }
@@ -92,15 +92,15 @@ const data = {
       items: [
         {
           title: "Overview",
-          url: "#",
+          url: "/shadcnoverview",
         },
         {
           title: "Installation",
-          url: "#",
+          url: "/shadcninstallation",
         },
         {
-          title: "Installation",
-          url: "#",
+          title: "Usage Example",
+          url: "/shadcnusage",
         },
       ],
     },
