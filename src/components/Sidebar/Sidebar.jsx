@@ -111,15 +111,15 @@ const data = {
       items: [
         {
           title: "Overview",
-          url: "#",
+          url: "/materialuioverview",
         },
         {
           title: "Installation",
-          url: "#",
+          url: "/materialuiinstallation",
         },
         {
           title: "Usage Example",
-          url: "#",
+          url: "/materialuiusage",
         },
       ],
     },
@@ -130,15 +130,15 @@ const data = {
       items: [
         {
           title: "Overview",
-          url: "#",
+          url: "/primereactoverview",
         },
         {
           title: "Installation",
-          url: "#",
+          url: "/primereactinstallation",
         },
         {
           title: "Usage Example",
-          url: "#",
+          url: "/primereactusage",
         },
       ],
     },
@@ -149,15 +149,15 @@ const data = {
       items: [
         {
           title: "Overview",
-          url: "#",
+          url: "/chakrauioverview",
         },
         {
           title: "Installation",
-          url: "#",
+          url: "/chakrauiinstallation",
         },
         {
           title: "Usage Example",
-          url: "#",
+          url: "/chakrauiusage",
         },
       ],
     },
@@ -168,15 +168,15 @@ const data = {
       items: [
         {
           title: "Overview",
-          url: "#",
+          url: "/antdesignoverview",
         },
         {
           title: "Installation",
-          url: "#",
+          url: "antdesigninstallation",
         },
         {
           title: "Usage Example",
-          url: "#",
+          url: "/antdesignusage",
         },
       ],
     },
