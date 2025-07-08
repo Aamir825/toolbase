@@ -11,7 +11,7 @@ import {
   Settings2,
   SquareTerminal,
 } from "lucide-react"
-import { RiTailwindCssFill } from "react-icons/ri";
+import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
 import { SiShadcnui, SiMui, SiPrimereact, SiChakraui, SiAntdesign} from "react-icons/si";
 import { UiLibraryMenu } from "@/components/uilibrarymenu"
 import { NavProjects } from "@/components/nav-projects"
@@ -25,6 +25,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { Overview } from "../overview"
+import { FrontendFrameworksMenus } from "../frontendframeworksmenu";
+import { FaAngular, FaReact, FaVuejs } from "react-icons/fa";
 
 // This is sample data.
 const data = {
@@ -63,6 +65,85 @@ const data = {
         },
       ]
     }
+  ],
+  frontendFrameworks: [
+    {
+      title: "React",
+      url: "#",
+      icon: FaReact,
+      isActive: true,
+      items: [
+        {
+          title: "Overview",
+          url: "/reactoverview",
+        },
+        {
+          title: "Getting Started",
+          url: "/reactinstallation",
+        },
+        {
+          title: "Core Example",
+          url: "/reactexamples",
+        },
+      ],
+    },
+    {
+      title: "Angular",
+      url: "#",
+      icon: FaAngular,
+      items: [
+        {
+          title: "Overview",
+          url: "/angularoverview",
+        },
+        {
+          title: "Getting Started",
+          url: "/angularinstallation",
+        },
+        {
+          title: "Core Example",
+          url: "/angularexamples",
+        },
+      ],
+    },
+    {
+      title: "Vue",
+      url: "#",
+      icon: FaVuejs,
+      items: [
+        {
+          title: "Overview",
+          url: "/vueoverview",
+        },
+        {
+          title: "Getting Started",
+          url: "/vueinstallation",
+        },
+        {
+          title: "Core Example",
+          url: "/vueexamples",
+        },
+      ],
+    },
+    {
+      title: "Next",
+      url: "#",
+      icon: RiNextjsFill,
+      items: [
+        {
+          title: "Overview",
+          url: "/nextjsoverview",
+        },
+        {
+          title: "Getting Started",
+          url: "/nextjsinstallation",
+        },
+        {
+          title: "Core Example",
+          url: "/nextjsexamples",
+        },
+      ],
+    },
   ],
   navMain: [
     {
@@ -210,6 +291,7 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <Overview items={data.overview}/>
+        <FrontendFrameworksMenus items={data.frontendFrameworks}/>
         <UiLibraryMenu items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
