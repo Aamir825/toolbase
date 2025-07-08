@@ -22,6 +22,18 @@ import { ChakrauiUsage } from "./pages/UiLibraries/Chakraui/ChakrauiUsage"
 import { AntdesignOverview } from "./pages/UiLibraries/AntDesign/AntdesignOverview"
 import { AntdesignInstallation } from "./pages/UiLibraries/AntDesign/AntdesignInstallation"
 import { AntdesignUsage } from "./pages/UiLibraries/AntDesign/AntdesignUsage"
+import {ReactOverview} from "./pages/FrontendFrameworks/React/ReactOverview"
+import {ReactInstallation} from "./pages/FrontendFrameworks/React/ReactInstallation"
+import {ReactExamples} from "./pages/FrontendFrameworks/React/ReactExamples"
+import {AngularOverview} from "./pages/FrontendFrameworks/Angular/AngularOverview"
+import {AngularInstallation} from "./pages/FrontendFrameworks/Angular/AngularInstallation"
+import {AngularExamples} from "./pages/FrontendFrameworks/Angular/AngularExamples"
+import {VueOverview} from "./pages/FrontendFrameworks/Vue/VueOverview"
+import {VueInstallation} from "./pages/FrontendFrameworks/Vue/VueInstallation"
+import {VueExamples} from "./pages/FrontendFrameworks/Vue/VueExamples"
+import { NextOverview } from "./pages/FrontendFrameworks/Next/NextOverview"
+import { NextInstallation } from "./pages/FrontendFrameworks/Next/NextInstallation"
+import { NextExamples } from "./pages/FrontendFrameworks/Next/NextExamples"
 
 function App() {
 
@@ -33,6 +45,54 @@ function App() {
         {
           path: "",
           element: <Home/>
+        },
+        {
+          path: "reactoverview",
+          element: <ReactOverview/>
+        },
+        {
+          path: "reactinstallation",
+          element: <ReactInstallation/>
+        },
+        {
+          path: "reactexamples",
+          element: <ReactExamples/>
+        },
+        {
+          path: "angularoverview",
+          element: <AngularOverview/>
+        },
+        {
+          path: "angularinstallation",
+          element: <AngularInstallation/>
+        },
+        {
+          path: "angularexamples",
+          element: <AngularExamples/>
+        },
+        {
+          path: "vueoverview",
+          element: <VueOverview/>
+        },
+        {
+          path: "vueinstallation",
+          element: <VueInstallation/>
+        },
+        {
+          path: "vueexamples",
+          element: <VueExamples/>
+        },
+        {
+          path: "nextjsoverview",
+          element: <NextOverview/>
+        },
+        {
+          path: "nextjsinstallation",
+          element: <NextInstallation/>
+        },
+        {
+          path: "nextjsexamples",
+          element: <NextExamples/>
         },
         {
           path: "tailwindoverview",
