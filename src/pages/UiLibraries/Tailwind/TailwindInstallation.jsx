@@ -60,13 +60,13 @@ export default function TailwindInstallation() {
       <div className="space-y-4">
         <div className="flex items-center gap-4">
           <div className="p-2 rounded-full bg-gradient-to-br from-[#38bdf8] to-[#0ea5e9] shadow-md">
-            <RiTailwindCssFill className="w-10 h-10 text-white" />
+            <RiTailwindCssFill className="w-8 h-8 text-white" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gradient bg-gradient-to-r from-primary to-[#0f766e] bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold tracking-tight text-gradient bg-gradient-to-b from-blue-400 to-primary bg-clip-text text-transparent py-2">
             Tailwind Installation Guide
           </h2>
         </div>
-        <p className="text-base text-muted-foreground leading-relaxed">
+        <p className="text-gray-600 leading-relaxed">
           Follow these steps to add Tailwind CSS to your frontend project using Vite, React, or any other toolchain.
         </p>
       </div>
@@ -76,15 +76,15 @@ export default function TailwindInstallation() {
         {tailwindSteps.map((step, idx) => (
           <div
             key={idx}
-            className="rounded-xl border bg-background p-5 shadow-sm transition-all hover:shadow-md"
+            className="rounded-xl border border-[#319795] bg-background p-5 shadow-sm transition-all hover:shadow-md"
           >
             <div className="flex items-start justify-between mb-2">
               <div>
-                <h3 className="text-lg font-semibold flex items-center gap-2 text-foreground">
-                  <TerminalSquare className="w-5 h-5 text-primary" />
+                <h3 className="text-sm font-semibold flex items-center gap-2 text-foreground">
+                  <TerminalSquare className="w-5 h-5 text-blue-400" />
                   {step.title}
                 </h3>
-                <p className="text-sm text-muted-foreground mt-1">{step.description}</p>
+                <p className="text-gray-600 text-sm mt-1">{step.description}</p>
               </div>
 
               <div className="relative">
@@ -106,7 +106,7 @@ export default function TailwindInstallation() {
               </div>
             </div>
 
-            <div className="bg-muted/40 border rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+            <div className="bg-muted/40 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
               {step.command}
             </div>
           </div>

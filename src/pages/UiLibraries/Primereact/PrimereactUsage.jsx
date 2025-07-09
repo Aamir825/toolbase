@@ -46,14 +46,14 @@ export const PrimereactUsage = () => {
       {/* Header */}
       <div className="space-y-4">
         <div className="flex items-center gap-4">
-          <div className="p-2 rounded-full bg-gradient-to-br from-[#3B82F6] to-[#227093] shadow-md">
-            <SiPrimereact className="w-10 h-10 text-white" />
+          <div className="p-2 rounded-full bg-[#ecfdff] shadow-md">
+            <SiPrimereact className="w-8 h-8 text-[#3bdaf6]" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gradient bg-gradient-to-r from-primary to-[#227093] bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold tracking-tight text-gradient bg-gradient-to-b from-[#3bdaf6] to-primary bg-clip-text text-transparent py-2">
             PrimeReact Usage Examples
           </h2>
         </div>
-        <p className="text-base text-muted-foreground leading-relaxed max-w-4xl">
+        <p className="text-gray-600 leading-relaxed max-w-4xl">
           Explore how to use PrimeReact components to rapidly build user interfaces with a clean design and powerful features.
         </p>
       </div>
@@ -63,15 +63,15 @@ export const PrimereactUsage = () => {
         {usageExamples.map((step, idx) => (
           <div
             key={idx}
-            className="rounded-xl border bg-background p-5 shadow-sm transition-all hover:shadow-md"
+            className="rounded-xl border border-[#319795] bg-background p-5 shadow-sm transition-all hover:shadow-md"
           >
             <div className="flex items-start justify-between mb-2">
               <div>
-                <h3 className="text-lg font-semibold flex items-center gap-2 text-foreground">
-                  <Code className="w-5 h-5 text-primary" />
+                <h3 className="text-sm font-semibold flex items-center gap-2 text-foreground">
+                  <Code className="w-5 h-5 text-[#3bdaf6]" />
                   {step.title}
                 </h3>
-                <p className="text-sm text-muted-foreground mt-1">{step.description}</p>
+                <p className="text-sm text-gray-600 mt-1">{step.description}</p>
               </div>
               <div className="relative">
                 <button
@@ -91,7 +91,7 @@ export const PrimereactUsage = () => {
                 )}
               </div>
             </div>
-            <pre className="bg-muted/40 border rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+            <pre className="bg-muted/40 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
               {step.example}
             </pre>
           </div>

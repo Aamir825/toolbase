@@ -4,7 +4,7 @@ export  const Home = () => {
     return (
         <div className="p-4 md:p-4 space-y-6">
             <div className="space-y-2">
-                <h1 className="text-4xl font-extrabold tracking-tight flex items-center gap-3 text-gradient bg-gradient-to-r from-primary to-[#063e3e] bg-clip-text text-transparent animate-fade-in">
+                <h1 className="text-4xl font-extrabold tracking-tight flex items-center gap-3 text-gradient bg-gradient-to-r from-[#076161] to-primary bg-clip-text text-transparent animate-fade-in py-2">
                     <BookOpen className="w-8 h-8 text-primary text-[#afafaf] animate-pulse" />
                     <span>Welcome to <span className="underline decoration-wavy decoration-primary">Toolbase</span></span>
                 </h1>
@@ -19,12 +19,12 @@ export  const Home = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
                 {features.map((feature, idx) => (
-                    <div key={idx} className="rounded-xl border bg-background p-5 shadow-sm hover:shadow-md transition">
+                    <div key={idx} className="rounded-xl border border-[#319795] bg-background p-5 shadow-sm hover:shadow-md transition">
                         <div className="flex items-center gap-3 mb-2">
-                            <feature.icon className="w-6 h-6 text-primary text-[#063e3e]" />
+                            <feature.icon className="w-6 h-6 text-primary text-[#319795]" />
                             <h3 className="font-semibold text-md">{feature.title}</h3>
                         </div>
-                        <p className="text-sm text-muted-foreground">{feature.description}</p>
+                        <p className="text-sm text-gray-700">{feature.description}</p>
                     </div>
                 ))}
             </div>

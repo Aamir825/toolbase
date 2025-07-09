@@ -42,28 +42,28 @@ export const ChakrauiInstallation = () => {
         <div className="space-y-8 p-4 md:p-8">
             <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                    <div className="p-2 rounded-full bg-gradient-to-br from-[#319795] to-[#2c7a7b] shadow-md">
-                        <SiChakraui className="w-10 h-10 text-white" />
+                    <div className="p-2 rounded-full bg-[#ecfffc] shadow-md">
+                        <SiChakraui className="w-8 h-8 text-[#3ecfcd]" />
                     </div>
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gradient bg-gradient-to-r from-primary to-[#319795] bg-clip-text text-transparent">
+                    <h2 className="text-4xl font-bold tracking-tight text-gradient bg-gradient-to-b from-[#3ecfcd] to-primary bg-clip-text text-transparent py-2">
                         Chakra UI Installation Guide
                     </h2>
                 </div>
-                <p className="text-base text-muted-foreground leading-relaxed">
+                <p className="text-gray-600 leading-relaxed">
                     Install Chakra UI and its required peer dependencies to start building your application.
                 </p>
             </div>
 
             <div className="space-y-6">
                 {installSteps.map((step, idx) => (
-                    <div key={idx} className="rounded-xl border bg-background p-5 shadow-sm">
+                    <div key={idx} className="rounded-xl border border-[#319795] bg-background p-5 shadow-sm">
                         <div className="flex items-start justify-between mb-2">
                             <div>
-                                <h3 className="text-lg font-semibold flex items-center gap-2 text-foreground">
-                                    <TerminalSquare className="w-5 h-5 text-primary" />
+                                <h3 className="text-sm font-semibold flex items-center gap-2 text-foreground">
+                                    <TerminalSquare className="w-5 h-5 text-[#3ecfcd]" />
                                     {step.title}
                                 </h3>
-                                <p className="text-sm text-muted-foreground mt-1">{step.description}</p>
+                                <p className="text-sm text-gray-600 mt-1">{step.description}</p>
                             </div>
                             <div className="relative">
                                 <button
@@ -84,7 +84,7 @@ export const ChakrauiInstallation = () => {
                             </div>
                         </div>
 
-                        <div className="bg-muted/50 border rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                        <div className="bg-muted/50 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
                             {step.command}
                         </div>
                     </div>
