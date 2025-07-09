@@ -1,0 +1,140 @@
+import { TerminalSquare } from "lucide-react";
+import { useState } from "react";
+import { SiReactquery } from "react-icons/si";
+import { HiCheckCircle } from "react-icons/hi";
+import { IoCopyOutline } from "react-icons/io5";
+
+const steps = [
+    {
+        title: "Install TanStack Query",
+        command: "npm install @tanstack/react-query",
+        description: "Install the core library for data fetching and caching.",
+    },
+    {
+        title: "Create a Query Client",
+        command: `// queryClient.js
+import { QueryClient } from '@tanstack/react-query';
+export const queryClient = new QueryClient();`,
+        description: "Initialize a `QueryClient` instance.",
+    },
+    {
+        title: "Wrap your app with Provider",
+        command: `// main.jsx or index.js
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './queryClient';
+
+<QueryClientProvider client={queryClient}>
+  <App />
+</QueryClientProvider>`,
+        description: "Wrap your root component with `QueryClientProvider`.",
+    },
+];
+
+const resources = [
+    {
+        name: "TanStack Query Docs",
+        link: "https://tanstack.com/query/latest",
+        description: "Official documentation and API references.",
+    },
+    {
+        name: "Query DevTools",
+        link: "https://tanstack.com/query/latest/docs/devtools",
+        description: "Debug your queries with powerful developer tools.",
+    },
+    {
+        name: "TanStack GitHub",
+        link: "https://github.com/TanStack/query",
+        description: "Source code and community discussions.",
+    },
+];
+
+export const TanstackSetup = () => {
+    const [copied, setCopied] = useState(null);
+
+    const handleCopy = async (text, idx) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            setCopied(idx);
+            setTimeout(() => setCopied(null), 1500);
+        } catch (err) {
+            console.error("Copy failed", err);
+        }
+    };
+
+    return (
+        <div className="space-y-12 px-4 md:px-8 py-10">
+            <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                    <div className="p-2 rounded-full bg-[#e6fff6] shadow-md">
+                        <SiReactquery className="w-8 h-8 text-yellow-500" />
+                    </div>
+                    <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-yellow-500 to-green-400 text-transparent bg-clip-text py-2">
+                        Installing TanStack Query
+                    </h2>
+                </div>
+                <p className="text-gray-600 leading-relaxed">
+                    Here's how to integrate TanStack Query with your React project.
+                </p>
+            </div>
+
+            <div className="space-y-8">
+                {steps.map((step, idx) => (
+                    <div
+                        key={idx}
+                        className="relative rounded-xl border border-[#319795] bg-white/80 dark:bg-black/30 p-6 shadow-md backdrop-blur-sm"
+                    >
+                        <div className="flex items-start justify-between mb-2">
+                            <div>
+                                <h3 className="text-sm font-semibold flex items-center gap-2">
+                                    <TerminalSquare className="w-5 h-5 text-yellow-500" />
+                                    {step.title}
+                                </h3>
+                                <p className="text-sm text-gray-600 mt-1">{step.description}</p>
+                            </div>
+                            <div className="relative">
+                                <button
+                                    onClick={() => handleCopy(step.command, idx)}
+                                    className="text-muted-foreground hover:text-primary transition"
+                                >
+                                    {copied === idx ? (
+                                        <HiCheckCircle className="w-6 h-6 text-green-600" />
+                                    ) : (
+                                        <IoCopyOutline className="w-6 h-6" />
+                                    )}
+                                </button>
+                                {copied === idx && (
+                                    <div className="absolute -top-6 right-0 bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded shadow-sm animate-fade-in">
+                                        Copied!
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        <pre className="bg-muted/40 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                            {step.command}
+                        </pre>
+                    </div>
+                ))}
+            </div>
+
+            {/* Useful Links */}
+            <div className="pt-6 space-y-3 border-t border-[#319795]">
+                <h4 className="text-xl font-semibold text-[#319795]">🔗 Useful TanStack Query Links</h4>
+                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    {resources.map((pkg, idx) => (
+                        <li key={idx}>
+                            <a
+                                href={pkg.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-[#319795] font-medium transition"
+                            >
+                                {pkg.name}
+                            </a>{" "}
+                            — <span className="text-muted-foreground">{pkg.description}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    );
+};
