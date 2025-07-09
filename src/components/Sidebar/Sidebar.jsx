@@ -12,8 +12,9 @@ import {
   SquareTerminal,
 } from "lucide-react"
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
-import { SiShadcnui, SiMui, SiPrimereact, SiChakraui, SiAntdesign} from "react-icons/si";
-import { UiLibraryMenu } from "@/components/uilibrarymenu"
+import { SiShadcnui, SiMui, SiPrimereact, SiChakraui, SiAntdesign, SiRedux, SiReactquery, SiNgrx} from "react-icons/si";
+import { GiPanda, GiPineapple } from "react-icons/gi";
+import { UiLibraryMenu } from "@/components/uilibrarymenu/uilibrarymenu"
 import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
@@ -25,8 +26,9 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { Overview } from "../overview"
-import { FrontendFrameworksMenus } from "../frontendframeworksmenu";
+import { FrontendFrameworksMenus } from "@/components/frontendframeworksmenu/frontendframeworksmenu";
 import { FaAngular, FaReact, FaVuejs } from "react-icons/fa";
+import { StateManagementMenus } from "../statemanagementmenu/statemanagementmenu";
 
 // This is sample data.
 const data = {
@@ -145,7 +147,7 @@ const data = {
       ],
     },
   ],
-  navMain: [
+  uilibrary: [
     {
       title: "Tailwind CSS",
       url: "#",
@@ -262,6 +264,104 @@ const data = {
       ],
     },
   ],
+  statemanagement: [
+    {
+      title: "Redux Toolkit",
+      url: "#",
+      icon: SiRedux,
+      isActive: true,
+      items: [
+        {
+          title: "Overview",
+          url: "/reduxoverview",
+        },
+        {
+          title: "Setup Guide",
+          url: "/reduxsetup",
+        },
+        {
+          title: "Usage Example",
+          url: "/reduxexamples",
+        },
+      ],
+    },
+    {
+      title: "Zustand",
+      url: "#",
+      icon: GiPanda,
+      items: [
+        {
+          title: "Overview",
+          url: "/zustandoverview",
+        },
+        {
+          title: "Setup Guide",
+          url: "/zustandsetup",
+        },
+        {
+          title: "Usage Example",
+          url: "/zustandexamples",
+        },
+      ],
+    },
+    {
+      title: "Tanstack Query",
+      url: "#",
+      icon: SiReactquery,
+      items: [
+        {
+          title: "Overview",
+          url: "/tanstackoverview",
+        },
+        {
+          title: "Setup Guide",
+          url: "/tanstacksetup",
+        },
+        {
+          title: "Usage Example",
+          url: "/tanstackexamples",
+        },
+      ],
+    },
+    {
+      title: "NgRx",
+      url: "#",
+      icon: SiNgrx,
+      items: [
+        {
+          title: "Overview",
+          url: "/ngrxoverview",
+        },
+        {
+          title: "Setup Guide",
+          url: "/ngrxsetup",
+        },
+        {
+          title: "Usage Example",
+          url: "/ngrxexamples",
+        },
+      ],
+    },
+    {
+      title: "Pinia",
+      url: "#",
+      icon: GiPineapple,
+      items: [
+        {
+          title: "Overview",
+          url: "/piniaoverview",
+        },
+        {
+          title: "Setup Guide",
+          url: "/piniasetup",
+        },
+        {
+          title: "Usage Example",
+          url: "/piniaexamples",
+        },
+      ],
+    },
+  ],
   projects: [
     {
       name: "Design Engineering",
@@ -292,7 +392,8 @@ export function AppSidebar({
       <SidebarContent>
         <Overview items={data.overview}/>
         <FrontendFrameworksMenus items={data.frontendFrameworks}/>
-        <UiLibraryMenu items={data.navMain} />
+        <UiLibraryMenu items={data.uilibrary} />
+        <StateManagementMenus items={data.statemanagement}/>
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>

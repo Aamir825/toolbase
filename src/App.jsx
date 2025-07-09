@@ -34,6 +34,21 @@ import {VueExamples} from "./pages/FrontendFrameworks/Vue/VueExamples"
 import { NextOverview } from "./pages/FrontendFrameworks/Next/NextOverview"
 import { NextInstallation } from "./pages/FrontendFrameworks/Next/NextInstallation"
 import { NextExamples } from "./pages/FrontendFrameworks/Next/NextExamples"
+import { ReduxOverview } from "./pages/StateManagement/ReduxToolkit/ReduxOverview"
+import { ReduxSetup } from "./pages/StateManagement/ReduxToolkit/ReduxSetup"
+import { ReduxExample } from "./pages/StateManagement/ReduxToolkit/ReduxExamples"
+import { ZustandOverview } from "./pages/StateManagement/Zustand/ZustandOverview"
+import { ZustandSetup } from "./pages/StateManagement/Zustand/ZustandSetup"
+import { ZustandExample } from "./pages/StateManagement/Zustand/ZustandExamples"
+import { TanstackOverview } from "./pages/StateManagement/TanstackQuery/TanstackOverview"
+import { TanstackSetup } from "./pages/StateManagement/TanstackQuery/TanstackSetup"
+import { TanstackExample } from "./pages/StateManagement/TanstackQuery/TanstackExamples"
+import { NgrxOverview } from "./pages/StateManagement/NgRx/NgrxOverview"
+import { NgrxSetup } from "./pages/StateManagement/NgRx/Ngrxsetup"
+import { NgrxExample } from "./pages/StateManagement/NgRx/NgrxExample"
+import { PiniaOverview } from "./pages/StateManagement/Pinia/PiniaOverview"
+import { PiniaSetup } from "./pages/StateManagement/Pinia/PiniaSetup"
+import { PiniaExample } from "./pages/StateManagement/Pinia/PiniaExample"
 
 function App() {
 
@@ -165,6 +180,66 @@ function App() {
         {
           path: "antdesignusage",
           element: <AntdesignUsage/>
+        },
+        {
+          path: "reduxoverview",
+          element: <ReduxOverview/>
+        },
+        {
+          path: "reduxsetup",
+          element: <ReduxSetup/>
+        },
+        {
+          path: "reduxexamples",
+          element: <ReduxExample/>
+        },
+        {
+          path: "zustandoverview",
+          element: <ZustandOverview/>
+        },
+        {
+          path: "zustandsetup",
+          element: <ZustandSetup/>
+        },
+        {
+          path: "zustandexamples",
+          element: <ZustandExample/>
+        },
+        {
+          path: "tanstackoverview",
+          element: <TanstackOverview/>
+        },
+        {
+          path: "tanstacksetup",
+          element: <TanstackSetup/>
+        },
+        {
+          path: "tanstackexamples",
+          element: <TanstackExample/>
+        },
+        {
+          path: "ngrxoverview",
+          element: <NgrxOverview/>
+        },
+        {
+          path: "ngrxsetup",
+          element: <NgrxSetup/>
+        },
+        {
+          path: "ngrxexamples",
+          element: <NgrxExample/>
+        },
+        {
+          path: "piniaoverview",
+          element: <PiniaOverview/>
+        },
+        {
+          path: "piniasetup",
+          element: <PiniaSetup/>
+        },
+        {
+          path: "piniaexamples",
+          element: <PiniaExample/>
         },
       ]
     }
