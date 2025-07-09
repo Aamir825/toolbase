@@ -6,14 +6,14 @@ export const AntdesignOverview = () => {
     <div className="space-y-8 p-4 md:p-8">
       <div className="space-y-2">
          <div className="flex items-center gap-4">
-          <div className="p-2 rounded-full bg-gradient-to-bl from-[#0074e0] to-[#f72b10] shadow-md">
-            <SiAntdesign className="w-10 h-10 text-white" />
+          <div className="p-2 rounded-full bg-[#fffcfb] shadow-md">
+            <SiAntdesign className="w-8 h-8 text-[#f72b10]" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gradient bg-gradient-to-r from-primary to-[#319795] bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold tracking-tight text-gradient bg-gradient-to-b from-[#f72b10] to-primary bg-clip-text text-transparent py-2">
             Ant Design Overview
           </h2>
         </div>
-        <p className="text-muted-foreground text-base leading-relaxed">
+        <p className="text-gray-600 leading-relaxed">
           Ant Design is a comprehensive React UI framework built for enterprise applications. It offers a large set of high-quality components, design consistency, and powerful customization for building modern web apps.
         </p>
       </div>
@@ -22,26 +22,26 @@ export const AntdesignOverview = () => {
         {highlights.map((item, idx) => (
           <div
             key={idx}
-            className="border rounded-xl bg-background p-5 shadow-sm hover:shadow-md transition group"
+            className="border border-[#319795] rounded-xl bg-background p-5 shadow-sm hover:shadow-md transition group"
           >
             <div className="flex items-center gap-3 mb-2">
-              <item.icon className="w-6 h-6 text-primary group-hover:scale-110 transition" />
+              <item.icon className="w-6 h-6 text-[#f72b10] group-hover:scale-110 transition" />
               <h3 className="font-semibold text-lg">{item.title}</h3>
             </div>
-            <p className="text-sm text-muted-foreground">{item.description}</p>
+            <p className="text-sm text-gray-700">{item.description}</p>
           </div>
         ))}
       </div>
 
-      <div className="pt-6 border-t">
-        <p className="text-sm text-muted-foreground mb-2">Official Resources:</p>
+      <div className="pt-6 border-t border-[#319795]">
+        <p className="text-xl font-semibold text-[#319795] mb-2">🔗 Official Resources</p>
         <ul className="list-disc list-inside space-y-1 text-sm text-primary">
           <li>
             <a
               href="https://ant.design"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-[#1677ff]"
+              className="underline hover:text-[#319795]"
             >
               Ant Design Website
             </a>
@@ -51,9 +51,9 @@ export const AntdesignOverview = () => {
               href="https://ant.design/docs/react/introduce"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-[#1677ff]"
+              className="underline hover:text-[#319795]"
             >
-              Ant Design Documentation
+              Ant Design Documentation 
             </a>
           </li>
         </ul>

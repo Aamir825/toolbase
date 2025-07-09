@@ -7,14 +7,14 @@ export const PrimereactOverview = () => {
       {/* Header */}
       <div className="space-y-2">
         <div className="flex items-center gap-4">
-          <div className="p-2 rounded-full bg-gradient-to-br from-[#3B82F6] to-[#227093] shadow-md">
-            <SiPrimereact className="w-10 h-10 text-white" />
+          <div className="p-2 rounded-full bg-[#ecfdff] shadow-md">
+            <SiPrimereact className="w-8 h-8 text-[#3bdaf6]" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gradient bg-gradient-to-r from-primary to-[#227093] bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold tracking-tight text-gradient bg-gradient-to-b from-[#3bdaf6] to-primary bg-clip-text text-transparent py-2">
             PrimeReact Overview
           </h2>
         </div>
-        <p className="text-muted-foreground text-base leading-relaxed">
+        <p className="text-gray-600 leading-relaxed">
           PrimeReact is a rich UI component library for React, offering a comprehensive set of customizable components, themes, and templates to help developers build modern applications quickly.
         </p>
       </div>
@@ -24,27 +24,27 @@ export const PrimereactOverview = () => {
         {highlights.map((item, idx) => (
           <div
             key={idx}
-            className="border rounded-xl bg-background p-5 shadow-sm hover:shadow-md transition group"
+            className="border border-[#319795] rounded-xl bg-background p-5 shadow-sm hover:shadow-md transition group"
           >
             <div className="flex items-center gap-3 mb-2">
-              <item.icon className="w-6 h-6 text-primary group-hover:scale-110 transition" />
+              <item.icon className="w-6 h-6 text-[#3bdaf6] group-hover:scale-110 transition" />
               <h3 className="font-semibold text-lg">{item.title}</h3>
             </div>
-            <p className="text-sm text-muted-foreground">{item.description}</p>
+            <p className="text-sm text-gray-700">{item.description}</p>
           </div>
         ))}
       </div>
 
       {/* Official Links */}
-      <div className="pt-6 border-t">
-        <p className="text-sm text-muted-foreground mb-2">Official Resources:</p>
+      <div className="pt-6 border-t border-[#319795]">
+        <p className="text-xl font-semibold text-[#319795] mb-2">🔗 Official Resources</p>
         <ul className="list-disc list-inside space-y-1 text-sm text-primary">
           <li>
             <a
               href="https://primereact.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-sky-600"
+              className="underline hover:text-[#319795]"
             >
               PrimeReact Documentation
             </a>
@@ -54,7 +54,7 @@ export const PrimereactOverview = () => {
               href="https://github.com/primefaces/primereact"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-sky-600"
+              className="underline hover:text-[#319795]"
             >
               PrimeReact GitHub Repo
             </a>

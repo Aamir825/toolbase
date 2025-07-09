@@ -51,14 +51,14 @@ export const MaterialuiInstallation = () => {
       {/* Heading */}
       <div className="space-y-4">
         <div className="flex items-center gap-4">
-          <div className="p-2 rounded-full bg-gradient-to-br from-[#007FFF] to-[#0059B2] shadow-md">
-            <SiMui className="w-10 h-10 text-white" />
+          <div className="p-2 rounded-full bg-[#ecf0ff] shadow-md">
+            <SiMui className="w-8 h-8 text-[#007FFF]" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gradient bg-gradient-to-r from-primary to-[#0f766e] bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold tracking-tight text-gradient bg-gradient-to-b from-[#007FFF] to-primary bg-clip-text text-transparent py-2">
             MUI Installation Guide
           </h2>
         </div>
-        <p className="text-base text-muted-foreground leading-relaxed max-w-4xl">
+        <p className="text-gray-600 leading-relaxed max-w-4xl">
           Follow these steps to set up Material UI in your React project using npm or yarn.
         </p>
       </div>
@@ -66,14 +66,14 @@ export const MaterialuiInstallation = () => {
       {/* Steps */}
       <div className="space-y-6">
         {muiSteps.map((step, idx) => (
-          <div key={idx} className="rounded-xl border bg-background p-5 shadow-sm">
+          <div key={idx} className="rounded-xl border border-[#319795] bg-background p-5 shadow-sm">
             <div className="flex items-start justify-between mb-2">
               <div>
-                <h3 className="text-lg font-semibold flex items-center gap-2 text-foreground">
-                  <TerminalSquare className="w-5 h-5 text-primary" />
+                <h3 className="text-sm font-semibold flex items-center gap-2 text-foreground">
+                  <TerminalSquare className="w-5 h-5 text-[#007FFF]" />
                   {step.title}
                 </h3>
-                <p className="text-sm text-muted-foreground mt-1">{step.description}</p>
+                <p className="text-sm text-gray-600 mt-1">{step.description}</p>
               </div>
               <div className="relative">
                 <button
@@ -95,7 +95,7 @@ export const MaterialuiInstallation = () => {
               </div>
             </div>
 
-            <pre className="bg-muted/40 border rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+            <pre className="bg-muted/40 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
               {step.command}
             </pre>
           </div>
