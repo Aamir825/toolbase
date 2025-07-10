@@ -1,9 +1,6 @@
-// import { SiPinia } from "react-icons/si";
-// import { Draw, Zap, Database } from "lucide-react";
 import { Database, Zap } from "lucide-react";
 import { GiPineapple } from "react-icons/gi";
-import { MdDraw, MdOutlineTipsAndUpdates } from "react-icons/md";
-import { SiSpinrilla } from "react-icons/si";
+import { MdDraw } from "react-icons/md";
 
 const highlights = [
   {
@@ -12,7 +9,7 @@ const highlights = [
     icon: Zap,
   },
   {
-    title: "Modular & Lightweight",
+    title: "Lightweight",
     description: "Define multiple stores each focused on a specific domain of your application.",
     icon: MdDraw,
   },
@@ -24,7 +21,7 @@ const highlights = [
 ];
 
 export const PiniaOverview = () => (
-  <div className="max-w-8xl mx-auto px-4 md:px-8 py-10 space-y-16">
+  <div className="max-w-8xl mx-auto px-4 md:px-6 py-10 space-y-16">
     <div className="text-center space-y-4">
       <div className="inline-flex items-center justify-center p-4 rounded-full bg-green-100 shadow-lg">
         <GiPineapple className="w-10 h-10 text-yellow-500" />
@@ -37,7 +34,7 @@ export const PiniaOverview = () => (
       </p>
     </div>
 
-    <div className="grid md:grid-cols-3 gap-6">
+    <div className="grid md:grid-cols-3 gap-3">
       {highlights.map((item, idx) => (
         <div
           key={idx}
@@ -45,7 +42,7 @@ export const PiniaOverview = () => (
         >
           <div className="flex items-center gap-3 mb-3">
             <item.icon className="w-6 h-6 text-yellow-600" />
-            <h3 className="text-lg font-semibold text-yellow-600 dark:text-green-300">
+            <h3 className="text-md font-semibold text-yellow-600 dark:text-green-300">
               {item.title}
             </h3>
           </div>

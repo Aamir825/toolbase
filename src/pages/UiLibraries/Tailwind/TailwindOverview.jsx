@@ -20,7 +20,7 @@ export default function TailwindOverview() {
       </div>
 
       {/* Highlights */}
-      <div className="grid sm:grid-cols-2 gap-6 pt-4">
+      <div className="grid sm:grid-cols-2 gap-4 pt-4">
         {highlights.map((item, idx) => (
           <div
             key={idx}
@@ -28,7 +28,7 @@ export default function TailwindOverview() {
           >
             <div className="flex items-center gap-3 mb-2">
               <item.icon className="w-6 h-6 text-blue-400 group-hover:scale-110 transition" />
-              <h3 className="text-lg font-semibold">{item.title}</h3>
+              <h3 className="text-md font-semibold">{item.title}</h3>
             </div>
             <p className="text-sm text-gray-700 leading-relaxed">
               {item.description}

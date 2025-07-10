@@ -37,7 +37,7 @@ export const VueOverview = () => {
       </div>
 
       {/* What, Why, When */}
-      <div className="grid gap-10 md:grid-cols-3">
+      <div className="grid gap-3 md:grid-cols-3">
         <InfoBox
           icon={Info}
           title="What is Vue?"
@@ -61,7 +61,7 @@ export const VueOverview = () => {
           <MdOutlineTipsAndUpdates />
           <h2 className="font-bold text-[#319795]">Key Highlights of Vue</h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-3">
           {highlights.map((item, idx) => (
             <div
               key={idx}
@@ -69,7 +69,7 @@ export const VueOverview = () => {
             >
               <div className="flex items-center gap-3 mb-4">
                 <item.icon className="w-6 h-6 text-[#42b883]" />
-                <h3 className="text-lg font-semibold text-green-900 dark:text-green-300">{item.title}</h3>
+                <h3 className="text-md font-semibold text-green-900 dark:text-green-300">{item.title}</h3>
               </div>
               <p className="text-sm text-muted-foreground">{item.description}</p>
             </div>
@@ -90,7 +90,7 @@ function InfoBox({ icon: Icon, title, description }) {
     <div className="bg-white/80 dark:bg-black/30 border border-[#319795] rounded-2xl shadow-xl p-6 backdrop-blur-sm">
       <div className="flex items-center gap-2 mb-3">
         <Icon className="w-5 h-5 text-[#42b883]" />
-        <h3 className="font-semibold text-lg text-green-900 dark:text-green-300">{title}</h3>
+        <h3 className="font-semibold text-md text-green-900 dark:text-green-300">{title}</h3>
       </div>
       <p className="text-sm text-muted-foreground">{description}</p>
     </div>

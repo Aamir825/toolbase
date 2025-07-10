@@ -22,7 +22,7 @@ const highlights = [
 ];
 
 export const NgrxOverview = () => (
-  <div className="max-w-8xl mx-auto px-4 md:px-8 py-10 space-y-16">
+  <div className="max-w-8xl mx-auto px-4 md:px-6 py-10 space-y-16">
     <div className="text-center space-y-4">
       <div className="inline-flex items-center justify-center p-4 rounded-full bg-red-100 shadow-lg">
         <SiNgrx className="w-10 h-10 text-red-600" />
@@ -35,7 +35,7 @@ export const NgrxOverview = () => (
       </p>
     </div>
 
-    <div className="grid md:grid-cols-3 gap-6">
+    <div className="grid md:grid-cols-3 gap-3">
       {highlights.map((item, idx) => (
         <div
           key={idx}
@@ -43,7 +43,7 @@ export const NgrxOverview = () => (
         >
           <div className="flex items-center gap-3 mb-3">
             <item.icon className="w-6 h-6 text-red-600" />
-            <h3 className="text-lg font-semibold text-red-900 dark:text-red-300">
+            <h3 className="text-md font-semibold text-red-900 dark:text-red-300">
               {item.title}
             </h3>
           </div>

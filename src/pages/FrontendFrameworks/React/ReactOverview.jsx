@@ -32,7 +32,7 @@ const highlights = [
 
 export const ReactOverview = () => {
   return (
-    <div className="px-4 md:px-10 py-10 max-w-8xl mx-auto space-y-20">
+    <div className="px-4 md:px-6 py-10 max-w-8xl mx-auto space-y-20">
       {/* Header */}
       <div className="text-center space-y-4">
         <div className="inline-flex items-center justify-center p-4 rounded-full bg-[#d0f1ee] shadow-lg">
@@ -48,12 +48,12 @@ export const ReactOverview = () => {
       </div>
 
       {/* What, Why, When */}
-      <div className="grid gap-10 md:grid-cols-3">
+      <div className="grid gap-3 md:grid-cols-3">
         {/* What */}
         <div className="bg-white/80 dark:bg-black/30 border border-[#319795] rounded-2xl shadow-xl p-6 backdrop-blur-sm">
           <div className="flex items-center gap-2 mb-3">
             <Info className="w-5 h-5 text-blue-400" />
-            <h3 className="font-semibold text-lg text-blue-400 dark:text-[#a2e3dd]">
+            <h3 className="font-semibold text-md text-blue-400 dark:text-[#a2e3dd]">
               What is React?
             </h3>
           </div>
@@ -68,11 +68,11 @@ export const ReactOverview = () => {
         <div className="bg-white/80 dark:bg-black/30 border border-[#319795] rounded-2xl shadow-xl p-6 backdrop-blur-sm">
           <div className="flex items-center gap-2 mb-3">
             <CheckCircle className="w-5 h-5 text-blue-400" />
-            <h3 className="font-semibold text-lg text-blue-400 dark:text-[#a2e3dd]">
+            <h3 className="font-semibold text-md text-blue-400 dark:text-[#a2e3dd]">
               Why use React?
             </h3>
           </div>
-          <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+          <ul className=" text-sm text-muted-foreground space-y-1">
             <li>Improves code modularity and reuse</li>
             <li>Highly performant with virtual DOM</li>
             <li>
@@ -87,7 +87,7 @@ export const ReactOverview = () => {
         <div className="bg-white/80 dark:bg-black/30 border border-[#319795] rounded-2xl shadow-xl p-6 backdrop-blur-sm">
           <div className="flex items-center gap-2 mb-3">
             <Clock className="w-5 h-5 text-blue-400" />
-            <h3 className="font-semibold text-lg text-blue-400 dark:text-[#a2e3dd]">
+            <h3 className="font-semibold text-md text-blue-400 dark:text-[#a2e3dd]">
               When to Use React?
             </h3>
           </div>
@@ -105,7 +105,7 @@ export const ReactOverview = () => {
           <MdOutlineTipsAndUpdates />
           <h2 className="font-bold text-[#319795]">Key Highlights of React</h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-3">
           {highlights.map((item, idx) => (
             <div
               key={idx}
@@ -113,7 +113,7 @@ export const ReactOverview = () => {
             >
               <div className="flex items-center gap-3 mb-4">
                 <item.icon className="w-6 h-6 text-blue-400" />
-                <h3 className="text-lg font-semibold text-blue-400 dark:text-[#a2e3dd]">
+                <h3 className="text-md font-semibold text-blue-400 dark:text-[#a2e3dd]">
                   {item.title}
                 </h3>
               </div>

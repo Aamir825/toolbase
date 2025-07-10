@@ -51,7 +51,7 @@ export const VueExamples = () => {
   };
 
   return (
-    <div className="space-y-10 px-4 md:px-8 py-10">
+    <div className="space-y-10 px-4 md:px-6 py-10">
       <div className="flex items-center gap-4">
         <div className="p-3 rounded-full bg-green-100 shadow-md">
           <SiVuedotjs className="w-8 h-8 text-[#42b883]" />

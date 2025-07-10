@@ -23,7 +23,7 @@ const highlights = [
 
 export const NextOverview = () => {
   return (
-    <div className="px-4 md:px-10 py-10 max-w-8xl mx-auto space-y-20">
+    <div className="px-4 md:px-6 py-10 max-w-8xl mx-auto space-y-20">
       {/* Header */}
       <div className="text-center space-y-4">
         <div className="inline-flex items-center justify-center p-4 rounded-full bg-blue-100 shadow-lg">
@@ -38,7 +38,7 @@ export const NextOverview = () => {
       </div>
 
       {/* What, Why, When */}
-      <div className="grid gap-10 md:grid-cols-3">
+      <div className="grid gap-3 md:grid-cols-3">
         <InfoBox
           icon={Info}
           title="What is Next.js?"
@@ -62,7 +62,7 @@ export const NextOverview = () => {
           <MdOutlineTipsAndUpdates />
           <h2 className="font-bold text-[#319795]">Key Highlights of Next.js</h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-3">
           {highlights.map((item, idx) => (
             <div
               key={idx}
@@ -70,7 +70,7 @@ export const NextOverview = () => {
             >
               <div className="flex items-center gap-3 mb-4">
                 <item.icon className="w-6 h-6 text-[#319795]" />
-                <h3 className="text-lg font-semibold text-[#205d5b] dark:text-[#91f1ec]">{item.title}</h3>
+                <h3 className="text-md font-semibold text-[#205d5b] dark:text-[#91f1ec]">{item.title}</h3>
               </div>
               <p className="text-sm text-muted-foreground">{item.description}</p>
             </div>
@@ -91,7 +91,7 @@ function InfoBox({ icon: Icon, title, description }) {
     <div className="bg-white/80 dark:bg-black/30 border border-[#319795] rounded-2xl shadow-xl p-6 backdrop-blur-sm">
       <div className="flex items-center gap-2 mb-3">
         <Icon className="w-5 h-5 text-[#319795]" />
-        <h3 className="font-semibold text-lg text-[#205d5b] dark:text-[#91f1ec]">{title}</h3>
+        <h3 className="font-semibold text-md text-[#205d5b] dark:text-[#91f1ec]">{title}</h3>
       </div>
       <p className="text-sm text-muted-foreground">{description}</p>
     </div>

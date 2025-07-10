@@ -21,7 +21,7 @@ const features = [
 
 export const ZustandOverview = () => {
   return (
-    <div className="max-w-8xl mx-auto px-4 md:px-8 py-10 space-y-16">
+    <div className="max-w-8xl mx-auto px-4 md:px-6 py-10 space-y-16">
       {/* Header */}
       <div className="text-center space-y-4">
         <div className="inline-flex items-center justify-center p-4 rounded-full bg-green-100 shadow-lg">
@@ -36,7 +36,7 @@ export const ZustandOverview = () => {
       </div>
 
       {/* Features */}
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-3">
         {features.map((f, i) => (
           <div
             key={i}
@@ -44,7 +44,7 @@ export const ZustandOverview = () => {
           >
             <div className="flex items-center gap-3 mb-3">
               <f.icon className="w-6 h-6 text-green-600" />
-              <h3 className="text-lg font-semibold text-green-900">{f.title}</h3>
+              <h3 className="text-md font-semibold text-green-900">{f.title}</h3>
             </div>
             <p className="text-sm text-gray-700">{f.description}</p>
           </div>

@@ -9,10 +9,10 @@ const BreadCrumb = () => {
     const paths = location.pathname.split("/").filter((path) => path);
     return (
         <>
-            <Breadcrumb style={{ display: "flex", alignItems: "center", gap: "0.3rem", listStyle: "none", color: "#063e3e", marginBottom: "1rem", }}>
+            <Breadcrumb style={{ display: "flex", alignItems: "center", gap: "0.3rem", listStyle: "none", color: "#063e3e", }}>
                 <BreadcrumbItem>
                     <BreadcrumbLink asChild>
-                        <Link to="/"><FaHome size={18} /></Link>
+                        <Link to="/" className='hover:text-blue-500'><FaHome size={18} /></Link>
                     </BreadcrumbLink>
                 </BreadcrumbItem>
 
@@ -25,10 +25,10 @@ const BreadCrumb = () => {
                             <BreadcrumbSeparator />
                             <BreadcrumbItem>
                                 {isLast ? (
-                                    <span className=' text-xs'>{path.replace(/-/g, " ").toUpperCase()}</span> // Show plain text for the last item
+                                    <span className=' text-xs font-bold text-[#076161]'>{path.replace(/-/g, " ").toUpperCase()}</span> // Show plain text for the last item
                                 ) : (
                                     <BreadcrumbLink asChild>
-                                        <Link className=' text-xs' to={to}>{path.replace(/-/g, " ").toUpperCase()}</Link> // Replace dashes with spaces for readability
+                                        <Link className=' text-xs font-bold text-[#076161] hover:text-blue-500' to={to}>{path.replace(/-/g, " ").toUpperCase()}</Link> // Replace dashes with spaces for readability
                                     </BreadcrumbLink>
                                 )}
                             </BreadcrumbItem>
