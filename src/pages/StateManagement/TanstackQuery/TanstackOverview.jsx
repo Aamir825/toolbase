@@ -22,7 +22,7 @@ const features = [
 
 export const TanstackOverview = () => {
     return (
-        <div className="max-w-8xl mx-auto px-4 md:px-8 py-10 space-y-16">
+        <div className="max-w-8xl mx-auto px-4 md:px-6 py-10 space-y-16">
             {/* Header */}
             <div className="text-center space-y-4">
                 <div className="inline-flex items-center justify-center p-4 rounded-full bg-[#e6fff6] shadow-lg">
@@ -37,7 +37,7 @@ export const TanstackOverview = () => {
             </div>
 
             {/* Features */}
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-3">
                 {features.map((feature, idx) => (
                     <div
                         key={idx}
@@ -45,7 +45,7 @@ export const TanstackOverview = () => {
                     >
                         <div className="flex items-center gap-3 mb-3">
                             <feature.icon className="w-6 h-6 text-yellow-600" />
-                            <h3 className="text-lg font-semibold text-yellow-600 dark:text-emerald-300">
+                            <h3 className="text-md font-semibold text-yellow-600 dark:text-emerald-300">
                                 {feature.title}
                             </h3>
                         </div>

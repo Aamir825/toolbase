@@ -18,7 +18,7 @@ export const AntdesignOverview = () => {
         </p>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-6">
+      <div className="grid sm:grid-cols-2 gap-4">
         {highlights.map((item, idx) => (
           <div
             key={idx}
@@ -26,7 +26,7 @@ export const AntdesignOverview = () => {
           >
             <div className="flex items-center gap-3 mb-2">
               <item.icon className="w-6 h-6 text-[#f72b10] group-hover:scale-110 transition" />
-              <h3 className="font-semibold text-lg">{item.title}</h3>
+              <h3 className="font-semibold text-md">{item.title}</h3>
             </div>
             <p className="text-sm text-gray-700">{item.description}</p>
           </div>

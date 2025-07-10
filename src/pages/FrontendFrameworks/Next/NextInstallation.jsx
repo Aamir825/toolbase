@@ -65,7 +65,7 @@ export const NextInstallation = () => {
     };
 
     return (
-        <div className="space-y-12 px-4 md:px-8 py-10">
+        <div className="space-y-12 px-4 md:px-6 py-10">
             {/* Header */}
             <div className="space-y-4">
                 <div className="flex items-center gap-4">
@@ -90,7 +90,7 @@ export const NextInstallation = () => {
                     >
                         <div className="flex items-start justify-between mb-2">
                             <div>
-                                <h3 className="text-lg font-semibold flex items-center gap-2 text-foreground">
+                                <h3 className="text-sm font-semibold flex items-center gap-2 text-foreground">
                                     <TerminalSquare className="w-5 h-5 text-[#319795]" />
                                     {step.title}
                                 </h3>

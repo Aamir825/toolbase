@@ -22,16 +22,7 @@ const features = [
 
 export const ReduxOverview = () => {
   return (
-    <div className="max-w-8xl mx-auto px-4 md:px-8 py-10 space-y-16">
-      {/* Header
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-500 text-transparent bg-clip-text">
-          Redux Toolkit (RTK)
-        </h1>
-        <p className="text-gray-600 text-muted-foreground max-w-2xl mx-auto">
-          Redux Toolkit is the official, recommended approach for managing global state in React applications. It includes powerful utilities for reducers, async logic, and store configuration.
-        </p>
-      </div> */}
+    <div className="max-w-8xl mx-auto px-4 md:px-6 py-10 space-y-16">
       {/* Header */}
             <div className="text-center space-y-4">
               <div className="inline-flex items-center justify-center p-4 rounded-full bg-[#fffcfb] shadow-lg">
@@ -46,7 +37,7 @@ export const ReduxOverview = () => {
             </div>
 
       {/* Features */}
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-3">
         {features.map((feature, idx) => (
           <div
             key={idx}
@@ -54,7 +45,7 @@ export const ReduxOverview = () => {
           >
             <div className="flex items-center gap-3 mb-3">
               <feature.icon className="w-6 h-6 text-purple-600" />
-              <h3 className="text-lg font-semibold text-purple-900 dark:text-purple-300">
+              <h3 className="text-md font-semibold text-purple-900 dark:text-purple-300">
                 {feature.title}
               </h3>
             </div>

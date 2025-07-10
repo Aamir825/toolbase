@@ -66,21 +66,28 @@ export const AntdesignUsage = () => {
             <div className="flex items-start justify-between mb-2">
               <div>
                 <h3 className="text-sm font-semibold flex items-center gap-2 text-foreground">
-                  <Code className="w-5 h-5 text-primary" />
+                  <Code className="w-5 h-5 text-[#f72b10]" />
                   {step.title}
                 </h3>
                 <p className="text-sm text-gray-600 mt-1">{step.description}</p>
               </div>
-              <button
-                onClick={() => handleCopy(step.example, idx)}
-                className="text-muted-foreground hover:text-primary transition"
-              >
-                {copied === idx ? (
-                  <HiCheckCircle className="w-6 h-6 text-green-600" />
-                ) : (
-                  <IoCopyOutline className="w-6 h-6" />
+              <div className="relative">
+                <button
+                  onClick={() => handleCopy(step.example, idx)}
+                  className="text-muted-foreground hover:text-primary transition"
+                >
+                  {copied === idx ? (
+                    <HiCheckCircle className="w-6 h-6 text-green-600" />
+                  ) : (
+                    <IoCopyOutline className="w-6 h-6" />
+                  )}
+                </button>
+                {copied === idx && (
+                  <div className="absolute -top-6 right-0 bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded shadow-sm animate-fade-in">
+                    Copied!
+                  </div>
                 )}
-              </button>
+              </div>
             </div>
             <pre className="bg-muted/40 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
               {step.example}

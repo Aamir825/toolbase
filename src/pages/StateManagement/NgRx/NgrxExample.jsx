@@ -54,11 +54,11 @@ export const NgrxExample = () => {
       await navigator.clipboard.writeText(code);
       setCopied(idx);
       setTimeout(() => setCopied(null), 1500);
-    } catch {}
+    } catch { }
   };
 
   return (
-    <div className="space-y-12 px-4 md:px-8 py-10">
+    <div className="space-y-12 px-4 md:px-6 py-10">
       <div className="space-y-4">
         <div className="flex items-center gap-4">
           <div className="p-2 rounded-full bg-red-50 shadow-md">
@@ -81,9 +81,21 @@ export const NgrxExample = () => {
               {item.title}
             </h3>
             <div className="relative">
-              <button onClick={() => handleCopy(item.code, idx)} className="text-muted-foreground hover:text-primary transition">
-                {copied === idx ? <HiCheckCircle className="w-6 h-6 text-green-600" /> : <IoCopyOutline className="w-6 h-6" />}
+              <button
+                onClick={() => handleCopy(item.code, idx)}
+                className="text-muted-foreground hover:text-primary transition"
+              >
+                {copied === idx ? (
+                  <HiCheckCircle className="w-6 h-6 text-green-600" />
+                ) : (
+                  <IoCopyOutline className="w-6 h-6" />
+                )}
               </button>
+              {copied === idx && (
+                <div className="absolute -top-6 right-0 bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded shadow-sm animate-fade-in">
+                  Copied!
+                </div>
+              )}
             </div>
           </div>
           <p className="text-sm text-gray-600 mb-2">{item.description}</p>

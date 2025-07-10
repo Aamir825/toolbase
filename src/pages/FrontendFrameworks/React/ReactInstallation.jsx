@@ -6,19 +6,35 @@ import { IoCopyOutline } from "react-icons/io5";
 
 const steps = [
   {
-    title: "1. Create a React App with Vite",
-    command: "npm create vite@latest my-app -- --template react",
-    description: "Use Vite to scaffold a new React project with lightning-fast development setup.",
+    title: "1. Create a New Project Folder",
+    command: "mkdir my-react-app",
+    description: "Make a new folder for your project files.",
   },
   {
-    title: "2. Install dependencies",
-    command: "cd my-app && npm install",
-    description: "Navigate into the project directory and install the necessary packages.",
+    title: "2. Open Project in Code Editor",
+    command: "code my-react-app",
+    description: "Open the folder in VS Code (or your preferred editor).",
   },
   {
-    title: "3. Start your development server",
+    title: "3. Open Terminal Inside Editor",
+    command: "Use Ctrl + ` or Terminal → New Terminal",
+    description: "Access the terminal inside your code editor to run commands.",
+    isNote: true,
+  },
+  {
+    title: "4. Create a React App using Vite",
+    command: "npm create vite@latest",
+    description: "Use Vite to scaffold a React project in the current folder.",
+  },
+  {
+    title: "5. Install Project Dependencies",
+    command: "npm install",
+    description: "Install required node packages listed in package.json.",
+  },
+  {
+    title: "6. Start the Development Server",
     command: "npm run dev",
-    description: "Spin up the development server and preview your app in the browser.",
+    description: "Launch the dev server and preview your app in the browser.",
   },
 ];
 
@@ -59,7 +75,7 @@ export const ReactInstallation = () => {
   };
 
   return (
-    <div className="space-y-14 px-4 md:px-8 py-10">
+    <div className="space-y-14 px-4 md:px-6 py-10">
       {/* Header */}
       <div className="space-y-4">
         <div className="flex items-center gap-4">
@@ -84,7 +100,7 @@ export const ReactInstallation = () => {
           >
             <div className="flex items-start justify-between mb-2">
               <div>
-                <h3 className="text-lg font-semibold flex items-center gap-2 text-foreground">
+                <h3 className="text-sm font-semibold flex items-center gap-2 text-foreground">
                   <TerminalSquare className="w-5 h-5 text-blue-400" />
                   {step.title}
                 </h3>

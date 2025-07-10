@@ -61,7 +61,7 @@ export const AngularExamples = () => {
     };
 
     return (
-        <div className="space-y-12 px-4 md:px-8 py-10">
+        <div className="space-y-12 px-4 md:px-6 py-10">
             <div className="flex items-center gap-4">
                 <div className="p-3 rounded-full bg-red-100 shadow-md">
                     <SiAngular className="w-8 h-8 text-red-600" />
