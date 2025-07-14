@@ -23,7 +23,7 @@ export const Header = () => {
     <>
       <div className=' bg-gradient-to-r from-[#f4fbf8] to-[#e1f3ea] px-8 pt-10 pb-4'>
         <div className="absolute inset-0 bg-[radial-gradient(#b9e6ce_1px,transparent_1px)] [background-size:20px_20px] opacity-40 pointer-events-none z-0" />
-        <div className="z-10 flex justify-between items-center">
+        <div className="z-10 flex md:flex-row md:gap-0 gap-3 flex-col md:justify-between md:items-center">
           <BreadCrumb />
           <div className=' flex items-center gap-3'>
             <div className="relative w-72">
