@@ -1,68 +1,16 @@
 import { TerminalSquare } from "lucide-react";
-import { FaReact } from "react-icons/fa";
 import { useState } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
 import { RiNextjsFill } from "react-icons/ri";
+import { handleCopy } from "@/components/shared/CopyToClipboard"
+import { packageManagers, steps, links } from "@/pages/FrontendFrameworks/Next/NextData"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const steps = [
-    {
-        title: "Create Next App",
-        command: "npx create-next-app@latest my-next-app",
-        description: "Use the official CLI to quickly scaffold a new Next.js project.",
-    },
-    {
-        title: "Navigate & Install",
-        command: "cd my-next-app && npm install",
-        description: "Move into your project directory and install packages.",
-    },
-    {
-        title: "Start Development Server",
-        command: "npm run dev",
-        description: "Start your local dev server at http://localhost:3000.",
-    },
-];
-
-const links = [
-    {
-        name: "Next.js Docs",
-        href: "https://nextjs.org/docs",
-        description: "Official guide for features like routing, data fetching, and deployment",
-    },
-    {
-        name: "App Router (New)",
-        href: "https://nextjs.org/docs/app",
-        description: "The new routing system based on server components",
-    },
-    {
-        name: "Next.js GitHub Repo",
-        href: "https://github.com/vercel/next.js",
-        description: "Open-source repo with discussions, issues, and source code",
-    },
-    {
-        name: "Learn Next.js Course",
-        href: "https://nextjs.org/learn",
-        description: "Official interactive Next.js tutorial",
-    },
-    {
-        name: "Vercel Hosting",
-        href: "https://vercel.com",
-        description: "Deploy your Next.js site in seconds with first-party hosting",
-    },
-];
 
 export const NextInstallation = () => {
     const [copied, setCopied] = useState(null);
-
-    const handleCopy = async (text, idx) => {
-        try {
-            await navigator.clipboard.writeText(text);
-            setCopied(idx);
-            setTimeout(() => setCopied(null), 1500);
-        } catch (err) {
-            console.error("Copy failed", err);
-        }
-    };
+    const [selectedTabs, setSelectedTabs] = useState({});
 
     return (
         <div className="space-y-12 px-4 md:px-6 py-10">
@@ -98,7 +46,13 @@ export const NextInstallation = () => {
                             </div>
                             <div className="relative">
                                 <button
-                                    onClick={() => handleCopy(step.command, idx)}
+                                    onClick={() => handleCopy(
+                                        typeof step.command === "string"
+                                            ? step.command
+                                            : step.command[selectedTabs[idx] || "npm"], // pick per-step tab
+                                        setCopied,
+                                        idx
+                                    )}
                                     className="text-muted-foreground hover:text-[#319795] transition"
                                     title="Copy to clipboard"
                                 >
@@ -115,9 +69,35 @@ export const NextInstallation = () => {
                                 )}
                             </div>
                         </div>
-                        <pre className="bg-muted/50 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                        {/* <pre className="bg-muted/50 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
                             {step.command}
-                        </pre>
+                        </pre> */}
+                        {step.all ? (
+                            <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                                {step.command}
+                            </pre>
+                        ) : (
+                            <Tabs value={selectedTabs[idx] || "npm"} onValueChange={(value) => setSelectedTabs((prev) => ({ ...prev, [idx]: value }))} className="w-full">
+                                <TabsList className="">
+                                    {packageManagers.map((pm) => (
+                                        <TabsTrigger key={pm.key} value={pm.key}>
+                                            <span className="flex items-center gap-1 text-xs cursor-pointer">
+                                                {pm.icon}
+                                                {pm.label}
+                                            </span>
+                                        </TabsTrigger>
+                                    ))}
+                                </TabsList>
+
+                                {packageManagers.map((pm) => (
+                                    <TabsContent key={pm.key} value={pm.key}>
+                                        <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                                            {step.command[pm.key]}
+                                        </pre>
+                                    </TabsContent>
+                                ))}
+                            </Tabs>
+                        )}
                     </div>
                 ))}
             </div>

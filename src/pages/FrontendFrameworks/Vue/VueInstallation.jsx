@@ -3,65 +3,13 @@ import { useState } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
 import { SiVuedotjs } from "react-icons/si";
-
-const steps = [
-  {
-    title: "Install Vite + Vue",
-    command: "npm create vite@latest my-vue-app -- --template vue",
-    description: "Scaffold a new Vue app using Vite’s fast setup.",
-  },
-  {
-    title: "Navigate & Install",
-    command: "cd my-vue-app && npm install",
-    description: "Move into your project folder and install dependencies.",
-  },
-  {
-    title: "Start Development Server",
-    command: "npm run dev",
-    description: "Start your dev server and preview your app in the browser.",
-  },
-];
-
-const links = [
-  {
-    name: "Vue Official Docs",
-    href: "https://vuejs.org/guide/introduction.html",
-    description: "Comprehensive documentation for learning Vue.js",
-  },
-  {
-    name: "Vue Router",
-    href: "https://router.vuejs.org/",
-    description: "Official routing library for Vue.js applications",
-  },
-  {
-    name: "Pinia (State Management)",
-    href: "https://pinia.vuejs.org/",
-    description: "The intuitive and powerful Vue store system",
-  },
-  {
-    name: "VueUse",
-    href: "https://vueuse.org/",
-    description: "Collection of essential Vue composition utilities",
-  },
-  {
-    name: "Vue GitHub Repo",
-    href: "https://github.com/vuejs/core",
-    description: "Official source code and issues on GitHub",
-  },
-];
+import { handleCopy } from "@/components/shared/CopyToClipboard"
+import { packageManagers, steps, links} from "@/pages/FrontendFrameworks/Vue/Vuedata"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const VueInstallation = () => {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (text, idx) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(idx);
-      setTimeout(() => setCopied(null), 1500);
-    } catch (err) {
-      console.error("Copy failed", err);
-    }
-  };
+  const [selectedTabs, setSelectedTabs] = useState({});
 
   return (
     <div className="space-y-12 px-4 md:px-6 py-10">
@@ -97,7 +45,13 @@ export const VueInstallation = () => {
               </div>
               <div className="relative">
                 <button
-                  onClick={() => handleCopy(step.command, idx)}
+                  onClick={() => handleCopy(
+                      typeof step.command === "string"
+                        ? step.command
+                        : step.command[selectedTabs[idx] || "npm"], // pick per-step tab
+                      setCopied,
+                      idx
+                    )}
                   className="text-muted-foreground hover:text-[#319795] transition"
                   title="Copy to clipboard"
                 >
@@ -114,9 +68,35 @@ export const VueInstallation = () => {
                 )}
               </div>
             </div>
-            <pre className="bg-muted/50 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+            {/* <pre className="bg-muted/50 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
               {step.command}
-            </pre>
+            </pre> */}
+            {step.all ? (
+              <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                {step.command}
+              </pre>
+            ) : (
+              <Tabs value={selectedTabs[idx] || "npm"} onValueChange={(value) => setSelectedTabs((prev) => ({ ...prev, [idx]: value }))} className="w-full">
+                <TabsList className="">
+                  {packageManagers.map((pm) => (
+                    <TabsTrigger key={pm.key} value={pm.key}>
+                      <span className="flex items-center gap-1 text-xs cursor-pointer">
+                        {pm.icon}
+                        {pm.label}
+                      </span>
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+
+                {packageManagers.map((pm) => (
+                  <TabsContent key={pm.key} value={pm.key}>
+                    <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                      {step.command[pm.key]}
+                    </pre>
+                  </TabsContent>
+                ))}
+              </Tabs>
+            )}
           </div>
         ))}
       </div>

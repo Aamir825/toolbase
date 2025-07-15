@@ -3,81 +3,13 @@ import { FaReact } from "react-icons/fa";
 import { useState } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
+import { handleCopy} from "@/components/shared/CopyToClipboard";
+import { examples } from "@/pages/FrontendFrameworks/React/Reactdata";
 
-const examples = [
-  {
-    title: "Functional Component with Hooks",
-    description: "A basic counter using `useState`.",
-    code: `import React, { useState } from 'react';
-
-function Counter() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div>
-      <h1>{count}</h1>
-      <button onClick={() => setCount(count + 1)}>
-        Increment
-      </button>
-    </div>
-  );
-}
-
-export default Counter;`,
-  },
-  {
-    title: "Conditional Rendering",
-    description: "Show or hide elements based on state.",
-    code: `import React, { useState } from 'react';
-
-function ToggleText() {
-  const [visible, setVisible] = useState(true);
-
-  return (
-    <div>
-      <button onClick={() => setVisible(!visible)}>
-        Toggle
-      </button>
-      {visible && <p>Hello, world!</p>}
-    </div>
-  );
-}
-
-export default ToggleText;`,
-  },
-  {
-    title: "Mapping List Items",
-    description: "Render a list from an array of data.",
-    code: `import React from 'react';
-
-function NameList() {
-  const names = ['Alice', 'Bob', 'Charlie'];
-
-  return (
-    <ul>
-      {names.map((name, index) => (
-        <li key={index}>{name}</li>
-      ))}
-    </ul>
-  );
-}
-
-export default NameList;`,
-  },
-];
 
 export const ReactExamples = () => {
-  const [copiedIndex, setCopiedIndex] = useState(null);
+  const [copied, setCopied] = useState(null);
 
-  const handleCopy = async (text, index) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopiedIndex(index);
-      setTimeout(() => setCopiedIndex(null), 1500);
-    } catch (err) {
-      console.error("Copy failed:", err);
-    }
-  };
 
   return (
     <div className="space-y-12 px-4 md:px-6 py-10">
@@ -113,17 +45,17 @@ export const ReactExamples = () => {
               </div>
               <div className="relative">
                 <button
-                  onClick={() => handleCopy(example.code, idx)}
+                  onClick={() => handleCopy(example.code, setCopied, idx)}
                   className="text-muted-foreground hover:text-blue-600 transition"
-                  title="Copy code"
+                  title="Copy to clipboard"
                 >
-                  {copiedIndex === idx ? (
+                  {copied === idx ? (
                     <HiCheckCircle className="w-6 h-6 text-green-600" />
                   ) : (
                     <IoCopyOutline className="w-6 h-6" />
                   )}
                 </button>
-                {copiedIndex === idx && (
+                {copied === idx && (
                   <div className="absolute -top-6 right-0 bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded shadow-sm animate-fade-in">
                     Copied!
                   </div>

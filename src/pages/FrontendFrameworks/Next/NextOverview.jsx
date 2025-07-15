@@ -1,25 +1,8 @@
-import { FaReact } from "react-icons/fa";
-import { Code2, Layers, Zap, Info, CheckCircle, Clock } from "lucide-react";
+import { Info, CheckCircle, Clock } from "lucide-react";
 import { MdOutlineTipsAndUpdates } from "react-icons/md";
 import { RiNextjsFill } from "react-icons/ri";
+import { highlights, InfoBox } from "@/pages/FrontendFrameworks/Vue/Vuedata"
 
-const highlights = [
-  {
-    title: "App Router & SSR",
-    description: "Server-side rendering and the new App Router bring fast performance and flexibility.",
-    icon: Code2,
-  },
-  {
-    title: "File-Based Routing",
-    description: "Every file in the `pages` or `app` directory becomes a route automatically.",
-    icon: Layers,
-  },
-  {
-    title: "Built-in Optimizations",
-    description: "Automatic image optimization, dynamic imports, and static site generation (SSG).",
-    icon: Zap,
-  },
-];
 
 export const NextOverview = () => {
   return (
@@ -82,18 +65,6 @@ export const NextOverview = () => {
       <div className="mt-16 border border-[#319795] rounded-xl bg-[#e0f8f6] dark:bg-[#0f272a] p-6 shadow-md text-sm leading-relaxed text-[#205d5b] dark:text-[#d1f1ef] text-center">
         Next.js is the gold standard for production React apps. Built by Vercel, it powers the web for companies like Netflix, Twitch, TikTok, and more.
       </div>
-    </div>
-  );
-}
-
-function InfoBox({ icon: Icon, title, description }) {
-  return (
-    <div className="bg-white/80 dark:bg-black/30 border border-[#319795] rounded-2xl shadow-xl p-6 backdrop-blur-sm">
-      <div className="flex items-center gap-2 mb-3">
-        <Icon className="w-5 h-5 text-[#319795]" />
-        <h3 className="font-semibold text-md text-[#205d5b] dark:text-[#91f1ec]">{title}</h3>
-      </div>
-      <p className="text-sm text-muted-foreground">{description}</p>
     </div>
   );
 }

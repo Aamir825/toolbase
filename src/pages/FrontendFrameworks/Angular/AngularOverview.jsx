@@ -1,24 +1,8 @@
 import { SiAngular } from "react-icons/si";
-import { Code2, Layers, Zap, Info, CheckCircle, Clock } from "lucide-react";
+import { Info, CheckCircle, Clock } from "lucide-react";
 import { MdOutlineTipsAndUpdates } from "react-icons/md";
+import { highlights, InfoBox } from "@/pages/FrontendFrameworks/Angular/AngularData";
 
-const highlights = [
-    {
-        title: "Component Architecture",
-        description: "Break your application into cohesive components, each with its own logic and template.",
-        icon: Layers,
-    },
-    {
-        title: "Powerful CLI",
-        description: "Angular CLI provides commands to scaffold components, services, routes, and more.",
-        icon: Zap,
-    },
-    {
-        title: "Two-Way Binding",
-        description: "Sync UI with model effortlessly using Angular’s built-in binding syntax.",
-        icon: Code2,
-    },
-];
 
 export const AngularOverview = () => {
     return (
@@ -82,18 +66,6 @@ export const AngularOverview = () => {
             <div className="mt-16 border border-[#319795] rounded-xl bg-[#e0f8f6] dark:bg-[#0f272a] p-6 shadow-md text-sm leading-relaxed text-[#205d5b] dark:text-[#d1f1ef] text-center">
                 Angular is trusted by enterprises around the world — powering complex apps from CRMs to internal tools. With strong typing, built-in routing, and scalable architecture, Angular is ideal for large teams and long-term projects.
             </div>
-        </div>
-    );
-}
-
-function InfoBox({ icon: Icon, title, description }) {
-    return (
-        <div className="bg-white/80 dark:bg-black/30 border border-[#319795] rounded-2xl shadow-xl p-6 backdrop-blur-sm">
-            <div className="flex items-center gap-2 mb-3">
-                <Icon className="w-5 h-5 text-red-600" />
-                <h3 className="font-semibold text-md text-red-900 dark:text-red-300">{title}</h3>
-            </div>
-            <p className="text-sm text-muted-foreground">{description}</p>
         </div>
     );
 }

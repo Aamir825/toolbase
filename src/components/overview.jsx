@@ -42,8 +42,8 @@ export function Overview({
               <CollapsibleContent>
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
-                    <NavLink to={subItem.url} className={({ isActive }) => `${isActive ? "bg-[#063e3e]" : ""} rounded-md`}>
-                      <SidebarMenuSubItem key={subItem.title} className='hover:bg-[#063e3e] rounded-md'>
+                    <NavLink key={subItem.title} to={subItem.url} className={({ isActive }) => `${isActive ? "bg-[#063e3e]" : ""} rounded-md`}>
+                      <SidebarMenuSubItem className='hover:bg-[#063e3e] rounded-md'>
                         <SidebarMenuSubButton asChild>
                           <span>{subItem.title}</span>
                         </SidebarMenuSubButton>

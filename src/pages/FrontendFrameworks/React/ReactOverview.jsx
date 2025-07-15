@@ -1,34 +1,7 @@
 import { FaReact } from "react-icons/fa";
-import {
-  Code2,
-  Lightbulb,
-  Sparkles,
-  Info,
-  CheckCircle,
-  Clock,
-} from "lucide-react";
+import { Info, CheckCircle, Clock } from "lucide-react";
 import { MdOutlineTipsAndUpdates } from "react-icons/md";
-
-const highlights = [
-  {
-    title: "Component-Based",
-    description:
-      "Design reusable components and manage complex UIs by breaking them down into isolated pieces.",
-    icon: Code2,
-  },
-  {
-    title: "Declarative UI",
-    description:
-      "Write UI logic in a readable and predictable way, letting React handle DOM updates.",
-    icon: Lightbulb,
-  },
-  {
-    title: "Thriving Ecosystem",
-    description:
-      "Take advantage of React's massive community, tools, libraries, and third-party integrations.",
-    icon: Sparkles,
-  },
-];
+import { highlights } from "@/pages/FrontendFrameworks/React/Reactdata";
 
 export const ReactOverview = () => {
   return (

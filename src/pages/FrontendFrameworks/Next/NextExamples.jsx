@@ -1,61 +1,13 @@
 import { Code } from "lucide-react";
-import { FaReact } from "react-icons/fa";
 import { useState } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
 import { RiNextjsFill } from "react-icons/ri";
-
-const examples = [
-    {
-        title: "Basic Page (App Router)",
-        description: "This is a default page in the new `/app` directory.",
-        code: `// app/page.tsx
-export default function HomePage() {
-  return <h1>Welcome to Next.js App Router!</h1>;
-}`,
-    },
-    {
-        title: "Layout Component (App Router)",
-        description: "Shared layout for all pages in the app directory.",
-        code: `// app/layout.tsx
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
-}`,
-    },
-    {
-        title: "API Route (Pages Router)",
-        description: "A simple backend API using the `/pages/api` folder.",
-        code: `// pages/api/hello.js
-export default function handler(req, res) {
-  res.status(200).json({ message: "Hello from API!" });
-}`,
-    },
-    {
-        title: "Dynamic Route with Params",
-        description: "Rendering a page based on dynamic URL parameters.",
-        code: `// app/blog/[slug]/page.tsx
-export default function BlogPost({ params }) {
-  return <h1>Post: {params.slug}</h1>;
-}`,
-    },
-];
+import { handleCopy } from "@/components/shared/CopyToClipboard"
+import { examples} from "@/pages/FrontendFrameworks/Vue/Vuedata"
 
 export const NextExamples = () => {
     const [copied, setCopied] = useState(null);
-
-    const handleCopy = async (text, idx) => {
-        try {
-            await navigator.clipboard.writeText(text);
-            setCopied(idx);
-            setTimeout(() => setCopied(null), 1500);
-        } catch (err) {
-            console.error("Copy failed", err);
-        }
-    };
 
     return (
         <div className="space-y-12 px-4 md:px-6 py-10">
@@ -86,7 +38,7 @@ export const NextExamples = () => {
                             </h3>
                             <div className="relative">
                                 <button
-                                    onClick={() => handleCopy(ex.code, idx)}
+                                    onClick={() => handleCopy(ex.code, setCopied, idx)}
                                     className="text-muted-foreground hover:text-[#319795] transition"
                                     title="Copy to clipboard"
                                 >
