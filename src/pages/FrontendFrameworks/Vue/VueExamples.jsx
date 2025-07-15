@@ -3,52 +3,11 @@ import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
 import { Code } from "lucide-react";
 import { SiVuedotjs } from "react-icons/si";
-
-const examples = [
-  {
-    title: "Reactive Counter (Composition API)",
-    code: `<script setup>
-import { ref } from 'vue'
-
-const count = ref(0)
-</script>
-
-<template>
-  <button @click="count++">Count: {{ count }}</button>
-</template>`,
-  },
-  {
-    title: "Basic Component (Options API)",
-    code: `<template>
-  <div>
-    <h1>{{ message }}</h1>
-  </div>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      message: "Hello from Vue!",
-    };
-  },
-};
-</script>`,
-  },
-];
+import { handleCopy } from "@/components/shared/CopyToClipboard"
+import { examples} from "@/pages/FrontendFrameworks/Vue/Vuedata"
 
 export const VueExamples = () => {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (text, idx) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(idx);
-      setTimeout(() => setCopied(null), 1500);
-    } catch (err) {
-      console.error("Copy failed", err);
-    }
-  };
 
   return (
     <div className="space-y-10 px-4 md:px-6 py-10">
@@ -76,7 +35,7 @@ export const VueExamples = () => {
             </h3>
             <div className="relative">
                 <button
-                  onClick={() => handleCopy(example.code, idx)}
+                  onClick={() => handleCopy(example.code, setCopied, idx)}
                   className="text-muted-foreground hover:text-[#319795] transition"
                   title="Copy to clipboard"
                 >

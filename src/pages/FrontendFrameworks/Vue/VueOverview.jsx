@@ -1,24 +1,8 @@
-import { Code2, Layers, Sparkles, Info, CheckCircle, Clock } from "lucide-react";
+import { Info, CheckCircle, Clock } from "lucide-react";
 import { MdOutlineTipsAndUpdates } from "react-icons/md";
 import { SiVuedotjs } from "react-icons/si";
+import { highlights, InfoBox} from "@/pages/FrontendFrameworks/Vue/Vuedata"
 
-const highlights = [
-  {
-    title: "Reactive Core",
-    description: "Vue uses a reactive data-binding system that updates the UI automatically.",
-    icon: Sparkles,
-  },
-  {
-    title: "Component-Based",
-    description: "Like React and Angular, Vue encourages reusable, encapsulated components.",
-    icon: Layers,
-  },
-  {
-    title: "Simplicity First",
-    description: "Minimal learning curve with powerful capabilities for both beginners and pros.",
-    icon: Code2,
-  },
-];
 
 export const VueOverview = () => {
   return (
@@ -81,18 +65,6 @@ export const VueOverview = () => {
       <div className="mt-16 border border-[#319795] rounded-xl bg-[#e0f8f6] dark:bg-[#0f272a] p-6 shadow-md text-sm leading-relaxed text-[#205d5b] dark:text-[#d1f1ef] text-center">
         Vue.js is a developer-friendly framework perfect for projects that demand speed, simplicity, and flexibility. It's lightweight yet powerful — used by companies like Alibaba and Xiaomi.
       </div>
-    </div>
-  );
-}
-
-function InfoBox({ icon: Icon, title, description }) {
-  return (
-    <div className="bg-white/80 dark:bg-black/30 border border-[#319795] rounded-2xl shadow-xl p-6 backdrop-blur-sm">
-      <div className="flex items-center gap-2 mb-3">
-        <Icon className="w-5 h-5 text-[#42b883]" />
-        <h3 className="font-semibold text-md text-green-900 dark:text-green-300">{title}</h3>
-      </div>
-      <p className="text-sm text-muted-foreground">{description}</p>
     </div>
   );
 }

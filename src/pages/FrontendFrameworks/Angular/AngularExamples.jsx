@@ -3,62 +3,12 @@ import { SiAngular } from "react-icons/si";
 import { useState } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
+import { handleCopy } from "@/components/shared/CopyToClipboard";
+import { examples } from "@/pages/FrontendFrameworks/Angular/AngularData";
 
-const examples = [
-    {
-        title: "Basic Component",
-        code: `import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  template: \`
-    <h1>{{ title }}</h1>
-    <button (click)="increment()">Increment</button>
-    <p>Count: {{ count }}</p>
-  \`,
-})
-export class AppComponent {
-  title = 'Angular Counter';
-  count = 0;
-
-  increment() {
-    this.count++;
-  }
-}`,
-    },
-    {
-        title: "Routing Example",
-        code: `// app-routing.module.ts
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-
-const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {}`,
-    },
-];
 
 export const AngularExamples = () => {
     const [copied, setCopied] = useState(null);
-
-    const handleCopy = async (text, idx) => {
-        try {
-            await navigator.clipboard.writeText(text);
-            setCopied(idx);
-            setTimeout(() => setCopied(null), 1500);
-        } catch (err) {
-            console.error("Copy failed", err);
-        }
-    };
 
     return (
         <div className="space-y-12 px-4 md:px-6 py-10">
@@ -84,7 +34,7 @@ export const AngularExamples = () => {
                         </h3>
                         <div className="relative">
                             <button
-                                onClick={() => handleCopy(step.command, idx)}
+                                onClick={() => handleCopy(ex.code, setCopied, idx)}
                                 className="text-muted-foreground hover:text-[#319795] transition"
                                 title="Copy to clipboard"
                             >

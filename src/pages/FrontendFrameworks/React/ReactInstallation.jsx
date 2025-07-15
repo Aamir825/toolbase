@@ -1,78 +1,16 @@
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TerminalSquare } from "lucide-react";
 import { useState } from "react";
 import { FaReact } from "react-icons/fa";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
+import { handleCopy } from "@/components/shared/CopyToClipboard"
+import { packageManagers, steps, resources } from "@/pages/FrontendFrameworks/React/Reactdata"
 
-const steps = [
-  {
-    title: "1. Create a New Project Folder",
-    command: "mkdir my-react-app",
-    description: "Make a new folder for your project files.",
-  },
-  {
-    title: "2. Open Project in Code Editor",
-    command: "code my-react-app",
-    description: "Open the folder in VS Code (or your preferred editor).",
-  },
-  {
-    title: "3. Open Terminal Inside Editor",
-    command: "Use Ctrl + ` or Terminal → New Terminal",
-    description: "Access the terminal inside your code editor to run commands.",
-    isNote: true,
-  },
-  {
-    title: "4. Create a React App using Vite",
-    command: "npm create vite@latest",
-    description: "Use Vite to scaffold a React project in the current folder.",
-  },
-  {
-    title: "5. Install Project Dependencies",
-    command: "npm install",
-    description: "Install required node packages listed in package.json.",
-  },
-  {
-    title: "6. Start the Development Server",
-    command: "npm run dev",
-    description: "Launch the dev server and preview your app in the browser.",
-  },
-];
-
-const resources = [
-  {
-    name: "Vite",
-    link: "https://vitejs.dev/guide/",
-    description: "Fast, modern build tool for frontend development.",
-  },
-  {
-    name: "React Router DOM",
-    link: "https://reactrouter.com/home",
-    description: "Declarative routing for React applications.",
-  },
-  {
-    name: "React Icons",
-    link: "https://react-icons.github.io/react-icons/",
-    description: "Popular icon packs in React components.",
-  },
-  {
-    name: "Lucide Icons",
-    link: "https://lucide.dev/icons/",
-    description: "Elegant, consistent open-source icon library.",
-  },
-];
 
 export const ReactInstallation = () => {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (text, idx) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(idx);
-      setTimeout(() => setCopied(null), 1500);
-    } catch (err) {
-      console.error("Copy failed", err);
-    }
-  };
+  const [selectedTabs, setSelectedTabs] = useState({});
 
   return (
     <div className="space-y-14 px-4 md:px-6 py-10">
@@ -108,7 +46,15 @@ export const ReactInstallation = () => {
               </div>
               <div className="relative">
                 <button
-                  onClick={() => handleCopy(step.command, idx)}
+                  onClick={() =>
+                    handleCopy(
+                      typeof step.command === "string"
+                        ? step.command
+                        : step.command[selectedTabs[idx] || "npm"], // pick per-step tab
+                      setCopied,
+                      idx
+                    )
+                  }
                   className="text-muted-foreground hover:text-[#319795] transition"
                   title="Copy to clipboard"
                 >
@@ -119,15 +65,42 @@ export const ReactInstallation = () => {
                   )}
                 </button>
                 {copied === idx && (
-                  <div className="absolute -top-6 right-0 bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded shadow-sm animate-fade-in">
+                  <div className="absolute -top-6 right-0 bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded shadow-sm">
                     Copied!
                   </div>
                 )}
               </div>
             </div>
-            <pre className="bg-muted/50 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+            {/* <pre className="bg-muted/50 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
               {step.command}
-            </pre>
+            </pre> */}
+            {/* Tabs */}
+            {step.all ? (
+              <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                {step.command}
+              </pre>
+            ) : (
+              <Tabs value={selectedTabs[idx] || "npm"} onValueChange={(value) => setSelectedTabs((prev) => ({ ...prev, [idx]: value }))} className="w-full">
+                <TabsList className="">
+                  {packageManagers.map((pm) => (
+                    <TabsTrigger key={pm.key} value={pm.key}>
+                      <span className="flex items-center gap-1 text-xs cursor-pointer">
+                        {pm.icon}
+                        {pm.label}
+                      </span>
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+
+                {packageManagers.map((pm) => (
+                  <TabsContent key={pm.key} value={pm.key}>
+                    <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                      {step.command[pm.key]}
+                    </pre>
+                  </TabsContent>
+                ))}
+              </Tabs>
+            )}
           </div>
         ))}
       </div>
