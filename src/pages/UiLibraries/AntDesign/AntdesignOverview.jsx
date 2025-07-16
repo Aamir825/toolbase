@@ -1,5 +1,5 @@
-import { BadgeCheck, Palette, LayoutGrid, PlugZap } from "lucide-react";
 import { SiAntdesign } from "react-icons/si";
+import { highlights } from "@/pages/UiLibraries/AntDesign/AntdesignData"
 
 export const AntdesignOverview = () => {
   return (
@@ -62,25 +62,3 @@ export const AntdesignOverview = () => {
   );
 }
 
-const highlights = [
-  {
-    title: "Rich Component Library",
-    description: "AntD provides 60+ carefully crafted components optimized for enterprise apps.",
-    icon: LayoutGrid,
-  },
-  {
-    title: "Consistent Design System",
-    description: "Built around the Ant Design specification for consistent user interfaces.",
-    icon: Palette,
-  },
-  {
-    title: "Internationalization (i18n)",
-    description: "Supports multiple languages with built-in i18n utilities.",
-    icon: BadgeCheck,
-  },
-  {
-    title: "Theme Customization",
-    description: "Easily override styles using Less variables or CSS-in-JS solutions.",
-    icon: PlugZap,
-  },
-];

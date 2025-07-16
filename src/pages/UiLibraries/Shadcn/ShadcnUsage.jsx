@@ -3,62 +3,12 @@ import { SiShadcnui } from "react-icons/si";
 import { useState } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
+import { handleCopy } from "@/components/shared/CopyToClipboard";
+import { usageSteps } from "@/pages/UiLibraries/Shadcn/ShadcnData";
 
-const usageSteps = [
-  {
-    title: "Using Button Component",
-    description: "Import and use the Button component from your local Shadcn UI folder.",
-    example: `import { Button } from "@/components/ui/button";
-
-export default function App() {
-  return (
-    <Button variant="default">
-      Click Me
-    </Button>
-  );
-}`,
-  },
-  {
-    title: "Dialog Component Example",
-    description: "Add dialogs using accessible primitives for modals, tooltips, etc.",
-    example: `import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
-
-<Dialog>
-  <DialogTrigger>Open</DialogTrigger>
-  <DialogContent>
-    This is a Shadcn dialog component.
-  </DialogContent>
-</Dialog>;`,
-  },
-  {
-    title: "Input with Label and Button",
-    description: "Use Input with Button and form elements for beautiful layouts.",
-    example: `import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-
-function ExampleForm() {
-  return (
-    <div className="flex gap-2">
-      <Input placeholder="Enter email" />
-      <Button>Submit</Button>
-    </div>
-  );
-}`,
-  },
-];
 
 export const ShadcnUsage = () => {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (text, idx) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(idx);
-      setTimeout(() => setCopied(null), 1500);
-    } catch (err) {
-      console.error("Copy failed:", err);
-    }
-  };
 
   return (
     <div className="space-y-8 p-4 md:p-8">
@@ -94,10 +44,9 @@ export const ShadcnUsage = () => {
               </div>
               <div className="relative">
                 <button
-                  onClick={() => handleCopy(step.example, idx)}
-                  className="text-muted-foreground hover:text-primary transition"
-                  aria-label={`Copy example for ${step.title}`}
-                  title={`Copy example for ${step.title}`}
+                  onClick={() => handleCopy(step.example, setCopied, idx)}
+                  className="text-muted-foreground hover:text-[#319795] transition"
+                  title="Copy to clipboard"
                 >
                   {copied === idx ? (
                     <HiCheckCircle className="w-6 h-6 text-green-600" />

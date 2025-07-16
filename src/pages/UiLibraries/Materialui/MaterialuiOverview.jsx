@@ -1,5 +1,5 @@
-import { BadgeCheck, Info, Sparkles } from "lucide-react";
 import { SiMui } from "react-icons/si";
+import { highlights } from "@/pages/UiLibraries/Materialui/MaterialuiData";
 
 export const MaterialuiOverview = () => {
   return (
@@ -74,26 +74,3 @@ export const MaterialuiOverview = () => {
     </div>
   );
 }
-
-const highlights = [
-  {
-    title: "Material Design System",
-    description: "Components built on Google’s Material Design system with modern styling.",
-    icon: Sparkles,
-  },
-  {
-    title: "Theme Customization",
-    description: "Supports light/dark mode, custom colors, fonts, and breakpoints.",
-    icon: Info,
-  },
-  {
-    title: "Rich Component Set",
-    description: "Offers inputs, dialogs, data grids, navigation, charts, and more.",
-    icon: BadgeCheck,
-  },
-  {
-    title: "Accessibility First",
-    description: "Every component follows WAI-ARIA and accessibility standards.",
-    icon: BadgeCheck,
-  },
-];

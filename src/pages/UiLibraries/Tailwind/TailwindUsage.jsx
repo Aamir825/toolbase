@@ -1,55 +1,14 @@
 import { Code, } from "lucide-react";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { useState } from "react";
-import { HiClipboard, HiCheckCircle } from "react-icons/hi";
+import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
+import { handleCopy } from "@/components/shared/CopyToClipboard";
+import { usageSteps } from "@/pages/UiLibraries/Tailwind/TailwindData";
 
-const usageSteps = [
-  {
-    title: "Add Tailwind classes to your markup",
-    description:
-      "Use utility classes like `bg-blue-500`, `text-white`, `p-4`, and `rounded` directly in your HTML or JSX.",
-    example: `<button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
-  Click me
-</button>`,
-  },
-  {
-    title: "Responsive design with prefixes",
-    description:
-      "Apply different styles on different screen sizes using prefixes like `sm:`, `md:`, and `lg:`.",
-    example: `<div className="text-sm sm:text-base md:text-lg lg:text-xl">
-  Responsive text size
-</div>`,
-  },
-  {
-    title: "Customize using config file",
-    description:
-      "Extend or override the default theme by updating `tailwind.config.js`.",
-    example: `// tailwind.config.js
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        primary: '#1c64f2',
-      },
-    },
-  },
-};`,
-  },
-];
 
 export default function TailwindUsage() {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (text, idx) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(idx);
-      setTimeout(() => setCopied(null), 1500);
-    } catch (err) {
-      console.error("Copy failed:", err);
-    }
-  };
 
   return (
     <div className="space-y-8 p-4 md:p-8">
@@ -85,10 +44,9 @@ export default function TailwindUsage() {
               </div>
               <div className="relative">
                 <button
-                  onClick={() => handleCopy(step.example, idx)}
-                  className="text-muted-foreground hover:text-primary transition"
-                  aria-label={`Copy example for ${step.title}`}
-                  title={`Copy example for ${step.title}`}
+                  onClick={() => handleCopy(step.example, setCopied, idx)}
+                  className="text-muted-foreground hover:text-[#319795] transition"
+                  title="Copy to clipboard"
                 >
                   {copied === idx ? (
                     <HiCheckCircle className="w-6 h-6 text-green-600" />

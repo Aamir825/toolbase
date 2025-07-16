@@ -3,57 +3,14 @@ import { useState } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
 import { SiShadcnui } from "react-icons/si";
+import { handleCopy } from "@/components/shared/CopyToClipboard";
+import { packageManagers, shadcnSteps } from "@/pages/UiLibraries/Shadcn/ShadcnData";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const shadcnSteps = [
-    {
-        title: "1. Initialize shadcn/ui",
-        command: "npx shadcn-ui@latest init",
-        description: "Starts the setup wizard for shadcn/ui. It will ask for your framework, Tailwind config path, and other preferences.",
-    },
-    {
-        title: "2. Configure components.json",
-        command: `{
-  "style": "default",
-  "rsc": false,
-  "tailwind": {
-    "config": "tailwind.config.js",
-    "css": "src/index.css",
-    "baseColor": "zinc",
-    "cssVariables": true
-  }
-}`,
-        description: "Defines where your components, styles, and Tailwind setup live. You can customize the style and color scheme.",
-        isCodeBlock: true,
-    },
-    {
-        title: "3. Add a component",
-        command: "npx shadcn-ui@latest add button",
-        description: "This command copies the `Button` component source code directly into your project for full customization.",
-    },
-    {
-        title: "4. Use the component",
-        command: `import { Button } from "@/components/ui/button";
-
-export default function Example() {
-  return <Button>Click me</Button>;
-}`,
-        description: "Once added, you can use your component anywhere. You own the code and can customize freely.",
-        isCodeBlock: true,
-    },
-];
 
 export const ShadcnInstallation = () => {
     const [copied, setCopied] = useState(null);
-
-    const handleCopy = async (text, idx) => {
-        try {
-            await navigator.clipboard.writeText(text);
-            setCopied(idx);
-            setTimeout(() => setCopied(null), 1500);
-        } catch (err) {
-            console.error("Copy failed:", err);
-        }
-    };
+    const [selectedTabs, setSelectedTabs] = useState({});
 
     return (
         <div className="space-y-8 p-4 md:p-8">
@@ -86,10 +43,15 @@ export const ShadcnInstallation = () => {
                             </div>
                             <div className="relative">
                                 <button
-                                    onClick={() => handleCopy(step.command, idx)}
-                                    className="text-muted-foreground hover:text-primary transition"
-                                    aria-label={`Copy example for ${step.title}`}
-                                    title={`Copy example for ${step.title}`}
+                                    onClick={() => handleCopy(
+                                        typeof step.command === "string"
+                                            ? step.command
+                                            : step.command[selectedTabs[idx] || "npm"], // pick per-step tab
+                                        setCopied,
+                                        idx
+                                    )}
+                                    className="text-muted-foreground hover:text-[#319795] transition"
+                                    title="Copy to clipboard"
                                 >
                                     {copied === idx ? (
                                         <HiCheckCircle className="w-6 h-6 text-green-600" />
@@ -105,9 +67,36 @@ export const ShadcnInstallation = () => {
                             </div>
                         </div>
 
-                        <div className="bg-muted/50 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                        {/* <div className="bg-muted/50 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
                             {step.command}
-                        </div>
+                        </div> */}
+                        {/* Tabs */}
+                        {step.all ? (
+                            <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                                {step.command}
+                            </pre>
+                        ) : (
+                            <Tabs value={selectedTabs[idx] || "npm"} onValueChange={(value) => setSelectedTabs((prev) => ({ ...prev, [idx]: value }))} className="w-full">
+                                <TabsList className="">
+                                    {packageManagers.map((pm) => (
+                                        <TabsTrigger key={pm.key} value={pm.key}>
+                                            <span className="flex items-center gap-1 text-xs cursor-pointer">
+                                                {pm.icon}
+                                                {pm.label}
+                                            </span>
+                                        </TabsTrigger>
+                                    ))}
+                                </TabsList>
+
+                                {packageManagers.map((pm) => (
+                                    <TabsContent key={pm.key} value={pm.key}>
+                                        <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                                            {step.command[pm.key]}
+                                        </pre>
+                                    </TabsContent>
+                                ))}
+                            </Tabs>
+                        )}
                     </div>
                 ))}
             </div>

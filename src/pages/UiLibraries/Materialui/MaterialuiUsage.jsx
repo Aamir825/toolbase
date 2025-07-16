@@ -3,54 +3,11 @@ import { SiMui } from "react-icons/si";
 import { useState } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
-
-const usageSteps = [
-  {
-    title: "Use MUI Button component",
-    description: "Material UI provides pre-built, accessible button components with consistent styling.",
-    example: `<Button variant="contained" color="primary">
-  Click Me
-</Button>`,
-  },
-  {
-    title: "Customize theme colors",
-    description: "Use `createTheme` to define your own palette, typography, and more.",
-    example: `import { createTheme } from '@mui/material/styles';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#1976d2',
-    },
-  },
-});`,
-  },
-  {
-    title: "Responsive Grid layout",
-    description: "Use the `Grid` component to create responsive layouts easily.",
-    example: `<Grid container spacing={2}>
-  <Grid item xs={12} sm={6}>
-    <Paper>Left</Paper>
-  </Grid>
-  <Grid item xs={12} sm={6}>
-    <Paper>Right</Paper>
-  </Grid>
-</Grid>`,
-  },
-];
+import { handleCopy } from "@/components/shared/CopyToClipboard";
+import { usageSteps } from "@/pages/UiLibraries/Materialui/MaterialuiData";
 
 export const MaterialuiUsage = () => {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (text, idx) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(idx);
-      setTimeout(() => setCopied(null), 1500);
-    } catch (err) {
-      console.error("Copy failed:", err);
-    }
-  };
 
   return (
     <div className="space-y-8 p-4 md:p-8">
@@ -86,10 +43,9 @@ export const MaterialuiUsage = () => {
               </div>
               <div className="relative">
                 <button
-                  onClick={() => handleCopy(step.example, idx)}
-                  className="text-muted-foreground hover:text-primary transition"
-                  aria-label={`Copy example for ${step.title}`}
-                  title={`Copy example for ${step.title}`}
+                  onClick={() => handleCopy(step.example, setCopied, idx)}
+                  className="text-muted-foreground hover:text-[#319795] transition"
+                  title="Copy to clipboard"
                 >
                   {copied === idx ? (
                     <HiCheckCircle className="w-6 h-6 text-green-600" />
