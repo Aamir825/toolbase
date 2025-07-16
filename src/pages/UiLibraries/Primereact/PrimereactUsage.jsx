@@ -3,43 +3,11 @@ import { useState } from "react";
 import { SiPrimereact } from "react-icons/si";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
-
-const usageExamples = [
-  {
-    title: "Use Button Component",
-    description: "Import and use a styled PrimeReact button.",
-    example: `import { Button } from 'primereact/button';
-
-<Button label="Click Me" icon="pi pi-check" className="p-button-success" />`,
-  },
-  {
-    title: "Use InputText Component",
-    description: "PrimeReact provides fully styled input components out of the box.",
-    example: `import { InputText } from 'primereact/inputtext';
-
-<InputText placeholder="Enter text" className="w-full" />`,
-  },
-  {
-    title: "Use DataTable Component",
-    description: "Create rich, paginated tables with sorting and filtering.",
-    example: `import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-
-<DataTable value={products}>
-  <Column field="name" header="Name" />
-  <Column field="price" header="Price" />
-</DataTable>`,
-  },
-];
+import { handleCopy } from "@/components/shared/CopyToClipboard";
+import { usageExamples } from "@/pages/UiLibraries/Primereact/PrimereactData";
 
 export const PrimereactUsage = () => {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (text, idx) => {
-    await navigator.clipboard.writeText(text);
-    setCopied(idx);
-    setTimeout(() => setCopied(null), 1500);
-  };
 
   return (
     <div className="space-y-8 p-4 md:p-8">
@@ -75,8 +43,9 @@ export const PrimereactUsage = () => {
               </div>
               <div className="relative">
                 <button
-                  onClick={() => handleCopy(step.example, idx)}
-                  className="text-muted-foreground hover:text-primary transition"
+                  onClick={() => handleCopy(step.example, setCopied, idx)}
+                  className="text-muted-foreground hover:text-[#319795] transition"
+                  title="Copy to clipboard"
                 >
                   {copied === idx ? (
                     <HiCheckCircle className="w-6 h-6 text-green-600" />

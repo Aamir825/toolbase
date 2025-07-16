@@ -1,58 +1,16 @@
 import { TerminalSquare } from "lucide-react";
-import { HiClipboard, HiCheckCircle } from "react-icons/hi";
+import { HiCheckCircle } from "react-icons/hi";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { IoCopyOutline } from "react-icons/io5";
 import { useState } from "react";
+import { handleCopy } from "@/components/shared/CopyToClipboard";
+import { packageManagers, tailwindSteps } from "@/pages/UiLibraries/Tailwind/TailwindData";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const tailwindSteps = [
-  {
-    title: "1. Install Tailwind via npm",
-    command: "npm install -D tailwindcss postcss autoprefixer",
-    description: "Install Tailwind CSS and its required PostCSS plugins for your project.",
-  },
-  {
-    title: "2. Initialize Tailwind config",
-    command: "npx tailwindcss init -p",
-    description: "This creates `tailwind.config.js` and `postcss.config.js` files.",
-  },
-  {
-    title: "3. Configure template paths",
-    command: `/** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  theme: { extend: {} },
-  plugins: [],
-}`,
-    description: "Update `tailwind.config.js` with paths to your files that use Tailwind classes.",
-    isCodeBlock: true,
-  },
-  {
-    title: "4. Add Tailwind to CSS",
-    command: `@tailwind base;
-@tailwind components;
-@tailwind utilities;`,
-    description: "Insert Tailwind’s layers into your main CSS file (e.g., `src/index.css`).",
-    isCodeBlock: true,
-  },
-  {
-    title: "5. Start your dev server",
-    command: "npm run dev",
-    description: "Start your development server to see Tailwind in action.",
-  },
-];
 
 export default function TailwindInstallation() {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (text, idx) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(idx);
-      setTimeout(() => setCopied(null), 1500);
-    } catch (err) {
-      console.error("Copy failed:", err);
-    }
-  };
+  const [selectedTabs, setSelectedTabs] = useState({});
 
   return (
     <div className="space-y-8 p-4 md:p-8">
@@ -89,8 +47,15 @@ export default function TailwindInstallation() {
 
               <div className="relative">
                 <button
-                  onClick={() => handleCopy(step.command, idx)}
-                  className="text-muted-foreground hover:text-primary transition"
+                  onClick={() => handleCopy(
+                    typeof step.command === "string"
+                      ? step.command
+                      : step.command[selectedTabs[idx] || "npm"], // pick per-step tab
+                    setCopied,
+                    idx
+                  )}
+                  className="text-muted-foreground hover:text-[#319795] transition"
+                  title="Copy to clipboard"
                 >
                   {copied === idx ? (
                     <HiCheckCircle className="w-6 h-6 text-green-600" />
@@ -106,9 +71,36 @@ export default function TailwindInstallation() {
               </div>
             </div>
 
-            <div className="bg-muted/40 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+            {/* <div className="bg-muted/40 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
               {step.command}
-            </div>
+            </div> */}
+            {/* Tabs */}
+            {step.all ? (
+              <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                {step.command}
+              </pre>
+            ) : (
+              <Tabs value={selectedTabs[idx] || "npm"} onValueChange={(value) => setSelectedTabs((prev) => ({ ...prev, [idx]: value }))} className="w-full">
+                <TabsList className="">
+                  {packageManagers.map((pm) => (
+                    <TabsTrigger key={pm.key} value={pm.key}>
+                      <span className="flex items-center gap-1 text-xs cursor-pointer">
+                        {pm.icon}
+                        {pm.label}
+                      </span>
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+
+                {packageManagers.map((pm) => (
+                  <TabsContent key={pm.key} value={pm.key}>
+                    <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                      {step.command[pm.key]}
+                    </pre>
+                  </TabsContent>
+                ))}
+              </Tabs>
+            )}
           </div>
         ))}
       </div>

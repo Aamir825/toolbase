@@ -1,39 +1,16 @@
 import { TerminalSquare } from "lucide-react";
 import { useState } from "react";
 import { SiPrimereact } from "react-icons/si";
-import { HiClipboard, HiCheckCircle } from "react-icons/hi";
+import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
+import { handleCopy } from "@/components/shared/CopyToClipboard";
+import { packageManagers, steps } from "@/pages/UiLibraries/Primereact/PrimereactData";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const steps = [
-  {
-    title: "1. Install PrimeReact and PrimeIcons",
-    command: "npm install primereact primeicons",
-    description: "Installs the core PrimeReact UI library and the PrimeIcons icon set.",
-  },
-  {
-    title: "2. Install peer dependencies",
-    command: "npm install react-transition-group classnames",
-    description: "PrimeReact requires these packages for transitions and utility support.",
-  },
-  {
-    title: "3. Import PrimeReact CSS",
-    command: `// In main.jsx or index.js
-import 'primereact/resources/themes/lara-light-indigo/theme.css'; 
-import 'primereact/resources/primereact.min.css'; 
-import 'primeicons/primeicons.css';`,
-    description: "Import the necessary theme, core styles, and icons.",
-    isCodeBlock: true,
-  },
-];
 
 export const PrimereactInstallation = () => {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (text, idx) => {
-    await navigator.clipboard.writeText(text);
-    setCopied(idx);
-    setTimeout(() => setCopied(null), 1500);
-  };
+  const [selectedTabs, setSelectedTabs] = useState({});
 
   return (
     <div className="space-y-8 p-4 md:p-8">
@@ -66,8 +43,15 @@ export const PrimereactInstallation = () => {
               </div>
               <div className="relative">
                 <button
-                  onClick={() => handleCopy(step.command, idx)}
-                  className="text-muted-foreground hover:text-primary transition"
+                  onClick={() => handleCopy(
+                    typeof step.command === "string"
+                      ? step.command
+                      : step.command[selectedTabs[idx] || "npm"], // pick per-step tab
+                    setCopied,
+                    idx
+                  )}
+                  className="text-muted-foreground hover:text-[#319795] transition"
+                  title="Copy to clipboard"
                 >
                   {copied === idx ? (
                     <HiCheckCircle className="w-6 h-6 text-green-600" />
@@ -83,9 +67,36 @@ export const PrimereactInstallation = () => {
               </div>
             </div>
 
-            <div className="bg-muted/50 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+            {/* <div className="bg-muted/50 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
               {step.command}
-            </div>
+            </div> */}
+            {/* Tabs */}
+            {step.all ? (
+              <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                {step.command}
+              </pre>
+            ) : (
+              <Tabs value={selectedTabs[idx] || "npm"} onValueChange={(value) => setSelectedTabs((prev) => ({ ...prev, [idx]: value }))} className="w-full">
+                <TabsList className="">
+                  {packageManagers.map((pm) => (
+                    <TabsTrigger key={pm.key} value={pm.key}>
+                      <span className="flex items-center gap-1 text-xs cursor-pointer">
+                        {pm.icon}
+                        {pm.label}
+                      </span>
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+
+                {packageManagers.map((pm) => (
+                  <TabsContent key={pm.key} value={pm.key}>
+                    <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                      {step.command[pm.key]}
+                    </pre>
+                  </TabsContent>
+                ))}
+              </Tabs>
+            )}
           </div>
         ))}
       </div>

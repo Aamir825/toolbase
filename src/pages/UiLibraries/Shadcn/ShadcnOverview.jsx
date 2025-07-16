@@ -1,5 +1,5 @@
-import { Layers, Sparkles, Palette, Settings2 } from "lucide-react";
-import { SiShadcnui, SiTailwindcss } from "react-icons/si";
+import { SiShadcnui } from "react-icons/si";
+import { highlights } from "@/pages/UiLibraries/Shadcn/ShadcnData";
 
 export const ShadcnOverview = () => {
     return (
@@ -59,31 +59,3 @@ export const ShadcnOverview = () => {
         </div>
     );
 }
-
-const highlights = [
-    {
-        title: "Built with Tailwind & Radix",
-        description: "Leverages Tailwind CSS for styling and Radix UI for accessibility and behavior.",
-        icon: SiTailwindcss,
-    },
-    {
-        title: "Copy and Own the Code",
-        description: "All components are local to your project. Fully customizable and framework-agnostic.",
-        icon: Layers,
-    },
-    {
-        title: "Accessible by Design",
-        description: "Follows WAI-ARIA standards with keyboard navigation and screen reader support.",
-        icon: Settings2,
-    },
-    {
-        title: "Dark Mode & Themes",
-        description: "Easily toggle between light and dark themes with Tailwind's class-based system.",
-        icon: Palette,
-    },
-    {
-        title: "Modern Developer Experience",
-        description: "Written in TypeScript and designed for Next.js, Vite, and modern toolchains.",
-        icon: Sparkles,
-    },
-];

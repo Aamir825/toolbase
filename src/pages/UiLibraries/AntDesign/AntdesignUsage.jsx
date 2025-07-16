@@ -3,46 +3,12 @@ import { useState } from "react";
 import { SiAntdesign } from "react-icons/si";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
+import { handleCopy } from "@/components/shared/CopyToClipboard";
+import { usageExamples } from "@/pages/UiLibraries/AntDesign/AntdesignData";
 
-const usageExamples = [
-  {
-    title: "Primary Button",
-    description: "Use the `type` prop to customize button styles.",
-    example: `<Button type="primary">Submit</Button>`,
-  },
-  {
-    title: "Form with Validation",
-    description: "Build forms using Form, Input, and validation rules.",
-    example: `<Form layout="vertical">
-  <Form.Item label="Email" name="email" rules={[{ required: true }]}>
-    <Input />
-  </Form.Item>
-</Form>`,
-  },
-  {
-    title: "Modal Component",
-    description: "Trigger modals with controlled state.",
-    example: `const [isModalOpen, setIsModalOpen] = useState(false);
-
-<Modal
-  title="Example Modal"
-  open={isModalOpen}
-  onOk={() => setIsModalOpen(false)}
-  onCancel={() => setIsModalOpen(false)}
->
-  <p>Modal content goes here</p>
-</Modal>`,
-  },
-];
 
 export const AntdesignUsage = () => {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (text, idx) => {
-    await navigator.clipboard.writeText(text);
-    setCopied(idx);
-    setTimeout(() => setCopied(null), 1500);
-  };
 
   return (
     <div className="space-y-8 p-4 md:p-8">
@@ -73,7 +39,7 @@ export const AntdesignUsage = () => {
               </div>
               <div className="relative">
                 <button
-                  onClick={() => handleCopy(step.example, idx)}
+                  onClick={() => handleCopy(step.example, setCopied, idx)}
                   className="text-muted-foreground hover:text-primary transition"
                 >
                   {copied === idx ? (

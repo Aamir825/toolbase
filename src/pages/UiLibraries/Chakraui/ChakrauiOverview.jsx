@@ -1,5 +1,5 @@
-import { BadgeCheck, LayoutGrid, Moon, PlugZap } from "lucide-react";
 import { SiChakraui } from "react-icons/si";
+import { highlights } from "@/pages/UiLibraries/Chakraui/ChakrauiData";
 
 export const ChakrauiOverview = () => {
     return (
@@ -64,26 +64,3 @@ export const ChakrauiOverview = () => {
         </div>
     );
 }
-
-const highlights = [
-    {
-        title: "Accessible Components",
-        description: "All components follow WAI-ARIA guidelines and support keyboard navigation.",
-        icon: BadgeCheck,
-    },
-    {
-        title: "Responsive Design",
-        description: "Easily build responsive layouts using Chakra’s responsive prop syntax.",
-        icon: LayoutGrid,
-    },
-    {
-        title: "Dark Mode Support",
-        description: "Chakra comes with built-in dark mode support and theme toggling.",
-        icon: Moon,
-    },
-    {
-        title: "Theming System",
-        description: "Customize themes and tokens using Chakra's powerful theming features.",
-        icon: PlugZap,
-    },
-];

@@ -3,46 +3,11 @@ import { useState } from "react";
 import { SiChakraui } from "react-icons/si";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
-
-const usageExamples = [
-  {
-    title: "Basic Button",
-    description: "Use Chakra's Button component with built-in styles and props.",
-    example: `import { Button } from "@chakra-ui/react";
-
-<Button colorScheme="teal" size="md">
-  Click Me
-</Button>`,
-  },
-  {
-    title: "Stack Layout",
-    description: "Use Stack to manage spacing between elements.",
-    example: `import { Stack, Button } from "@chakra-ui/react";
-
-<Stack direction="row" spacing={4}>
-  <Button colorScheme="blue">Save</Button>
-  <Button colorScheme="red">Cancel</Button>
-</Stack>`,
-  },
-  {
-    title: "Responsive Box",
-    description: "Apply responsive props easily using Chakra's array/object syntax.",
-    example: `import { Box } from "@chakra-ui/react";
-
-<Box w={["100%", "50%"]} p={4} bg="gray.100">
-  Responsive Box
-</Box>`,
-  },
-];
+import { handleCopy } from "@/components/shared/CopyToClipboard";
+import { usageExamples } from "@/pages/UiLibraries/Chakraui/ChakrauiData";
 
 export const ChakrauiUsage = () => {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (text, idx) => {
-    await navigator.clipboard.writeText(text);
-    setCopied(idx);
-    setTimeout(() => setCopied(null), 1500);
-  };
 
   return (
     <div className="space-y-8 p-4 md:p-8">
@@ -77,8 +42,9 @@ export const ChakrauiUsage = () => {
               </div>
               <div className="relative">
                 <button
-                  onClick={() => handleCopy(step.example, idx)}
-                  className="text-muted-foreground hover:text-primary transition"
+                  onClick={() => handleCopy(step.example, setCopied, idx)}
+                  className="text-muted-foreground hover:text-[#319795] transition"
+                  title="Copy to clipboard"
                 >
                   {copied === idx ? (
                     <HiCheckCircle className="w-6 h-6 text-green-600" />

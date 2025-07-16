@@ -3,37 +3,14 @@ import { useState } from "react";
 import { SiAntdesign } from "react-icons/si";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
+import { handleCopy } from "@/components/shared/CopyToClipboard";
+import { packageManagers, steps } from "@/pages/UiLibraries/AntDesign/AntdesignData";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const steps = [
-  {
-    title: "1. Install Ant Design",
-    command: "npm install antd",
-    description: "Install the core Ant Design package into your project.",
-  },
-  {
-    title: "2. Import Styles",
-    command: `// main.jsx or App.jsx
-import 'antd/dist/reset.css';`,
-    description: "Import the default CSS to apply Ant Design styles.",
-  },
-  {
-    title: "3. Start using components",
-    command: `import { Button } from 'antd';
-
-<Button type="primary">AntD Button</Button>`,
-    description: "Import and use components as needed from the library.",
-    isCodeBlock: true,
-  },
-];
 
 export const AntdesignInstallation = () => {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (text, idx) => {
-    await navigator.clipboard.writeText(text);
-    setCopied(idx);
-    setTimeout(() => setCopied(null), 1500);
-  };
+  const [selectedTabs, setSelectedTabs] = useState({});
 
   return (
     <div className="space-y-8 p-4 md:p-8">
@@ -63,9 +40,16 @@ export const AntdesignInstallation = () => {
                 <p className="text-sm text-gray-600 mt-1">{step.description}</p>
               </div>
               <div className="relative">
-                <button
-                  onClick={() => handleCopy(step.command, idx)}
-                  className="text-muted-foreground hover:text-primary transition"
+                 <button
+                  onClick={() => handleCopy(
+                    typeof step.command === "string"
+                      ? step.command
+                      : step.command[selectedTabs[idx] || "npm"], // pick per-step tab
+                    setCopied,
+                    idx
+                  )}
+                  className="text-muted-foreground hover:text-[#319795] transition"
+                  title="Copy to clipboard"
                 >
                   {copied === idx ? (
                     <HiCheckCircle className="w-6 h-6 text-green-600" />
@@ -80,9 +64,36 @@ export const AntdesignInstallation = () => {
                 )}
               </div>
             </div>
-            <div className="bg-muted/40 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+            {/* <div className="bg-muted/40 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
               {step.command}
-            </div>
+            </div> */}
+             {/* Tabs */}
+            {step.all ? (
+              <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                {step.command}
+              </pre>
+            ) : (
+              <Tabs value={selectedTabs[idx] || "npm"} onValueChange={(value) => setSelectedTabs((prev) => ({ ...prev, [idx]: value }))} className="w-full">
+                <TabsList className="">
+                  {packageManagers.map((pm) => (
+                    <TabsTrigger key={pm.key} value={pm.key}>
+                      <span className="flex items-center gap-1 text-xs cursor-pointer">
+                        {pm.icon}
+                        {pm.label}
+                      </span>
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+
+                {packageManagers.map((pm) => (
+                  <TabsContent key={pm.key} value={pm.key}>
+                    <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                      {step.command[pm.key]}
+                    </pre>
+                  </TabsContent>
+                ))}
+              </Tabs>
+            )}
           </div>
         ))}
       </div>

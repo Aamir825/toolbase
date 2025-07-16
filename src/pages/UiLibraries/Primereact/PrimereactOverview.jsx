@@ -1,5 +1,5 @@
-import { BadgeCheck, PlugZap, Wrench, LayoutGrid } from "lucide-react";
 import { SiPrimereact } from "react-icons/si";
+import { highlights } from "@/pages/UiLibraries/Primereact/PrimereactData";
 
 export const PrimereactOverview = () => {
   return (
@@ -64,26 +64,3 @@ export const PrimereactOverview = () => {
     </div>
   );
 }
-
-const highlights = [
-  {
-    title: "80+ Rich Components",
-    description: "Includes data tables, charts, calendars, dropdowns, dialogs, and more out of the box.",
-    icon: LayoutGrid,
-  },
-  {
-    title: "Built-in Theming",
-    description: "Customize your UI with built-in light/dark themes and style configuration.",
-    icon: Wrench,
-  },
-  {
-    title: "Accessibility & RTL",
-    description: "Follows WCAG guidelines and supports right-to-left layouts for multilingual apps.",
-    icon: BadgeCheck,
-  },
-  {
-    title: "Enterprise Ready",
-    description: "Used in enterprise apps worldwide with commercial support and premium templates.",
-    icon: PlugZap,
-  },
-];

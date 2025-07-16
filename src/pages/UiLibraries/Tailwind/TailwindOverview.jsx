@@ -1,5 +1,5 @@
-import { BadgeCheck, Info, Sparkles } from "lucide-react";
 import { RiTailwindCssFill } from "react-icons/ri";
+import { highlights } from "@/pages/UiLibraries/Tailwind/TailwindData";
 
 export default function TailwindOverview() {
   return (
@@ -66,18 +66,3 @@ export default function TailwindOverview() {
     </div>
   );
 }
-
-const highlights = [
-  {
-    title: "Utility-First Approach",
-    description:
-      "Build UIs with minimal CSS by composing utility classes directly in your HTML. This leads to fast, consistent styling with zero config.",
-    icon: BadgeCheck,
-  },
-  {
-    title: "Responsive Design",
-    description:
-      "Style for multiple screen sizes using intuitive prefixes like `md:`, `lg:`, and `xl:`. Mobile-first by default.",
-    icon: Info,
-  },
-];
