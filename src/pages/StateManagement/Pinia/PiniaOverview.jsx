@@ -1,24 +1,5 @@
-import { Database, Zap } from "lucide-react";
 import { GiPineapple } from "react-icons/gi";
-import { MdDraw } from "react-icons/md";
-
-const highlights = [
-  {
-    title: "Vue-Native Store",
-    description: "Built specifically for Vue 3, well integrated with Composition API and reactivity.",
-    icon: Zap,
-  },
-  {
-    title: "Lightweight",
-    description: "Define multiple stores each focused on a specific domain of your application.",
-    icon: MdDraw,
-  },
-  {
-    title: "TypeScript Support",
-    description: "Full TS support out of the box—type safety for every getter, action, and state field.",
-    icon: Database,
-  },
-];
+import { highlights } from "@/pages/StateManagement/Pinia/PiniaData"
 
 export const PiniaOverview = () => (
   <div className="max-w-8xl mx-auto px-4 md:px-6 py-10 space-y-16">

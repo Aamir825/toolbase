@@ -3,63 +3,13 @@ import { useState } from "react";
 import { SiReactquery } from "react-icons/si";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
-
-const steps = [
-    {
-        title: "Install TanStack Query",
-        command: "npm install @tanstack/react-query",
-        description: "Install the core library for data fetching and caching.",
-    },
-    {
-        title: "Create a Query Client",
-        command: `// queryClient.js
-import { QueryClient } from '@tanstack/react-query';
-export const queryClient = new QueryClient();`,
-        description: "Initialize a `QueryClient` instance.",
-    },
-    {
-        title: "Wrap your app with Provider",
-        command: `// main.jsx or index.js
-import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from './queryClient';
-
-<QueryClientProvider client={queryClient}>
-  <App />
-</QueryClientProvider>`,
-        description: "Wrap your root component with `QueryClientProvider`.",
-    },
-];
-
-const resources = [
-    {
-        name: "TanStack Query Docs",
-        link: "https://tanstack.com/query/latest",
-        description: "Official documentation and API references.",
-    },
-    {
-        name: "Query DevTools",
-        link: "https://tanstack.com/query/latest/docs/devtools",
-        description: "Debug your queries with powerful developer tools.",
-    },
-    {
-        name: "TanStack GitHub",
-        link: "https://github.com/TanStack/query",
-        description: "Source code and community discussions.",
-    },
-];
+import { handleCopy } from "@/components/shared/CopyToClipboard"
+import { packageManagers, steps, resources } from "@/pages/StateManagement/TanstackQuery/TanstackData"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const TanstackSetup = () => {
     const [copied, setCopied] = useState(null);
-
-    const handleCopy = async (text, idx) => {
-        try {
-            await navigator.clipboard.writeText(text);
-            setCopied(idx);
-            setTimeout(() => setCopied(null), 1500);
-        } catch (err) {
-            console.error("Copy failed", err);
-        }
-    };
+    const [selectedTabs, setSelectedTabs] = useState({});
 
     return (
         <div className="space-y-12 px-4 md:px-6 py-10">
@@ -93,8 +43,15 @@ export const TanstackSetup = () => {
                             </div>
                             <div className="relative">
                                 <button
-                                    onClick={() => handleCopy(step.command, idx)}
-                                    className="text-muted-foreground hover:text-primary transition"
+                                    onClick={() => handleCopy(
+                                        typeof step.command === "string"
+                                            ? step.command
+                                            : step.command[selectedTabs[idx] || "npm"], // pick per-step tab
+                                        setCopied,
+                                        idx
+                                    )}
+                                    className="text-muted-foreground hover:text-[#319795] transition"
+                                    title="Copy to clipboard"
                                 >
                                     {copied === idx ? (
                                         <HiCheckCircle className="w-6 h-6 text-green-600" />
@@ -109,9 +66,35 @@ export const TanstackSetup = () => {
                                 )}
                             </div>
                         </div>
-                        <pre className="bg-muted/40 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                        {/* <pre className="bg-muted/40 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
                             {step.command}
-                        </pre>
+                        </pre> */}
+                        {step.all ? (
+                            <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                                {step.command}
+                            </pre>
+                        ) : (
+                            <Tabs value={selectedTabs[idx] || "npm"} onValueChange={(value) => setSelectedTabs((prev) => ({ ...prev, [idx]: value }))} className="w-full">
+                                <TabsList className="">
+                                    {packageManagers.map((pm) => (
+                                        <TabsTrigger key={pm.key} value={pm.key}>
+                                            <span className="flex items-center gap-1 text-xs cursor-pointer">
+                                                {pm.icon}
+                                                {pm.label}
+                                            </span>
+                                        </TabsTrigger>
+                                    ))}
+                                </TabsList>
+
+                                {packageManagers.map((pm) => (
+                                    <TabsContent key={pm.key} value={pm.key}>
+                                        <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                                            {step.command[pm.key]}
+                                        </pre>
+                                    </TabsContent>
+                                ))}
+                            </Tabs>
+                        )}
                     </div>
                 ))}
             </div>

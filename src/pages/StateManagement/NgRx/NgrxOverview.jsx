@@ -1,25 +1,5 @@
-import { FaCodeBranch } from "react-icons/fa";
-import { ClipboardList, ShieldCheck, Repeat } from "lucide-react";
-import { MdOutlineTipsAndUpdates } from "react-icons/md";
 import { SiNgrx } from "react-icons/si";
-
-const highlights = [
-  {
-    title: "Redux Inspired",
-    description: "Built with NgRx Store, Effects & Entity following Redux principles in Angular.",
-    icon: ClipboardList,
-  },
-  {
-    title: "Side‑Effect Management",
-    description: "Easily handle async tasks using `@ngrx/effects` for clean service-based logic.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Entity Cache",
-    description: "Manage collections with built‑in CRUD helpers via `@ngrx/entity`.",
-    icon: Repeat,
-  },
-];
+import { highlights } from "@/pages/StateManagement/NgRx/NgRxData"
 
 export const NgrxOverview = () => (
   <div className="max-w-8xl mx-auto px-4 md:px-6 py-10 space-y-16">

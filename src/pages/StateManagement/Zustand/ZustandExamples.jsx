@@ -3,43 +3,11 @@ import { FaLeaf } from "react-icons/fa";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
 import { useState } from "react";
-
-const examples = [
-    {
-        title: "Basic Counter Store",
-        description: "Define state and methods with `create`.",
-        code: `import { create } from 'zustand';
-
-export const useCounter = create(set => ({
-  count: 0,
-  inc: () => set(state => ({ count: state.count + 1 })),
-}));`,
-    },
-    {
-        title: "Using the Store in Components",
-        description: "Retrieve state and actions via hook.",
-        code: `function Counter() {
-  const { count, inc } = useCounter();
-  return (
-    <div>
-      <span>{count}</span>
-      <button onClick={inc}>+</button>
-    </div>
-  );
-}`,
-    },
-];
+import { handleCopy } from "@/components/shared/CopyToClipboard"
+import { examples } from "@/pages/StateManagement/Zustand/ZustandData"
 
 export const ZustandExample = () => {
     const [copied, setCopied] = useState(null);
-
-    const handleCopy = async (c, idx) => {
-        try {
-            await navigator.clipboard.writeText(c);
-            setCopied(idx);
-            setTimeout(() => setCopied(null), 1500);
-        } catch { }
-    };
 
     return (
         <div className="space-y-12 px-4 md:px-6 py-10">
@@ -66,8 +34,9 @@ export const ZustandExample = () => {
                         </h3>
                         <div className="relative">
                             <button
-                                onClick={() => handleCopy(e.code, i)}
-                                className="text-muted-foreground hover:text-green-600"
+                                onClick={() => handleCopy(e.code, setCopied, i)}
+                                className="text-muted-foreground hover:text-[#319795] transition"
+                                title="Copy to clipboard"
                             >
                                 {copied === i ? <HiCheckCircle className="w-6 h-6 text-green-600" /> : <IoCopyOutline className="w-6 h-6" />}
                             </button>

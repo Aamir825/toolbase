@@ -3,36 +3,11 @@ import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
 import { useState } from "react";
 import { GiPineapple } from "react-icons/gi";
-
-const examples = [
-  {
-    title: "Use Counter Store in Vue Component",
-    description: "How to import and use a Pinia store in your Vue component.",
-    code: `<script setup>
-import { useCounterStore } from '@/stores/counter';
-
-const counter = useCounterStore();
-</script>
-
-<template>
-  <div>
-    <p>Count: {{ counter.count }}</p>
-    <button @click="counter.increment()">Increment</button>
-  </div>
-</template>`,
-  },
-];
+import { handleCopy } from "@/components/shared/CopyToClipboard"
+import { examples } from "@/pages/StateManagement/Pinia/PiniaData"
 
 export const PiniaExample = () => {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (code, idx) => {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopied(idx);
-      setTimeout(() => setCopied(null), 1500);
-    } catch { }
-  };
 
   return (
     <div className="space-y-12 px-4 md:px-6 py-10">
@@ -59,8 +34,9 @@ export const PiniaExample = () => {
             </h3>
             <div className="relative">
               <button
-                onClick={() => handleCopy(item.code, idx)}
-                className="text-muted-foreground hover:text-primary transition"
+                onClick={() => handleCopy(item.code, setCopied, idx)}
+                className="text-muted-foreground hover:text-[#319795] transition"
+                title="Copy to clipboard"
               >
                 {copied === idx ? (
                   <HiCheckCircle className="w-6 h-6 text-green-600" />

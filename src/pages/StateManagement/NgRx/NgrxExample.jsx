@@ -3,59 +3,11 @@ import { useState } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
 import { SiNgrx } from "react-icons/si";
-
-const examples = [
-  {
-    title: "Define Counter Actions & Reducer",
-    description: "Create actions and reducer using `createAction` & `createReducer`.",
-    code: `import { createAction, createReducer, on } from '@ngrx/store';
-
-export const increment = createAction('[Counter] Increment');
-export const decrement = createAction('[Counter] Decrement');
-
-const initial = 0;
-
-export const counterReducer = createReducer(
-  initial,
-  on(increment, state => state + 1),
-  on(decrement, state => state - 1)
-);`,
-  },
-  {
-    title: "Connect Store in Component",
-    description: "Use `Store` to dispatch and select counter state in Angular.",
-    code: `import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { increment, decrement } from './counter.reducer';
-
-@Component({
-  selector: 'app-counter',
-  template: \`
-    <div>{{ count$ | async }}</div>
-    <button (click)="increment()">+</button>
-    <button (click)="decrement()">-</button>
-  \`
-})
-export class CounterComponent {
-  count$ = this.store.select('counter');
-  constructor(private store: Store<{ counter: number }>) {}
-
-  increment() { this.store.dispatch(increment()); }
-  decrement() { this.store.dispatch(decrement()); }
-}`,
-  },
-];
+import { handleCopy } from "@/components/shared/CopyToClipboard"
+import { examples } from "@/pages/StateManagement/NgRx/NgRxData"
 
 export const NgrxExample = () => {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (code, idx) => {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopied(idx);
-      setTimeout(() => setCopied(null), 1500);
-    } catch { }
-  };
 
   return (
     <div className="space-y-12 px-4 md:px-6 py-10">
@@ -82,8 +34,9 @@ export const NgrxExample = () => {
             </h3>
             <div className="relative">
               <button
-                onClick={() => handleCopy(item.code, idx)}
-                className="text-muted-foreground hover:text-primary transition"
+                onClick={() => handleCopy(item.code, setCopied, idx)}
+                className="text-muted-foreground hover:text-[#319795] transition"
+                  title="Copy to clipboard"
               >
                 {copied === idx ? (
                   <HiCheckCircle className="w-6 h-6 text-green-600" />

@@ -35,14 +35,21 @@ export const packageManagers = [
 
 
 export const installSteps = [
-    {
-        title: "1. Install Chakra UI",
-        command: "npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion",
-        description: "Install Chakra UI along with Emotion and Framer Motion (required peer dependencies).",
+  {
+    title: "Install Chakra UI",
+    command: {
+      npm: "npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion",
+      yarn: "yarn add @chakra-ui/react @emotion/react @emotion/styled framer-motion",
+      pnpm: "pnpm add @chakra-ui/react @emotion/react @emotion/styled framer-motion",
+      bun: "bun add @chakra-ui/react @emotion/react @emotion/styled framer-motion",
     },
-    {
-        title: "2. Set up ChakraProvider",
-        command: `// main.jsx or index.js
+    description:
+      "Install Chakra UI along with Emotion and Framer Motion (required peer dependencies).",
+  },
+  {
+    title: "Set up ChakraProvider",
+    command: {
+      npm: `// main.jsx or index.js
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -54,9 +61,45 @@ root.render(
     <App />
   </ChakraProvider>
 );`,
-        description: "Wrap your app with ChakraProvider to enable theming and styles.",
-        isCodeBlock: true,
+      yarn: `// main.jsx or index.js
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import { ChakraProvider } from "@chakra-ui/react";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <ChakraProvider>
+    <App />
+  </ChakraProvider>
+);`,
+      pnpm: `// main.jsx or index.js
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import { ChakraProvider } from "@chakra-ui/react";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <ChakraProvider>
+    <App />
+  </ChakraProvider>
+);`,
+      bun: `// main.jsx or index.js
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import { ChakraProvider } from "@chakra-ui/react";
+import App from "./App";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <ChakraProvider>
+    <App />
+  </ChakraProvider>
+);`,
     },
+    description: "Wrap your app with ChakraProvider to enable theming and styles.",
+  },
 ];
 
 
