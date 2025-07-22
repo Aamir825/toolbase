@@ -1,24 +1,5 @@
-import { FaTools } from "react-icons/fa";
-import { Network, ShieldCheck, TimerReset } from "lucide-react";
 import { SiReactquery } from "react-icons/si";
-
-const features = [
-    {
-        title: "Powerful Caching",
-        description: "Automatically caches and updates data efficiently, reducing redundant network requests.",
-        icon: ShieldCheck,
-    },
-    {
-        title: "Background Sync",
-        description: "Keeps data fresh by refetching in the background when components remount or focus changes.",
-        icon: TimerReset,
-    },
-    {
-        title: "Declarative Fetching",
-        description: "Manage server-state with hooks like `useQuery` and `useMutation`.",
-        icon: Network,
-    },
-];
+import { features } from "@/pages/StateManagement/TanstackQuery/TanstackData"
 
 export const TanstackOverview = () => {
     return (

@@ -3,40 +3,13 @@ import { useState } from "react";
 import { FaLeaf } from "react-icons/fa";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
-
-const steps = [
-  {
-    title: "Install Zustand",
-    command: "npm install zustand",
-    description: "Add the Zustand package to your project.",
-  },
-  {
-    title: "Create a Store",
-    command: `// store.js
-import { create } from 'zustand';
-
-export const useStore = create(set => ({
-  count: 0,
-  inc: () => set(state => ({ count: state.count + 1 })),
-}));`,
-    description: "Define state and actions in one reusable hook.",
-  },
-];
-
-const resources = [
-  { name: "Zustand Docs", link: "https://zustand.surge.sh/", description: "Core documentation & API reference" },
-  { name: "Zustand Github", link: "https://github.com/pmndrs/zustand", description: "Source code and community discussions." },
-];
+import { handleCopy } from "@/components/shared/CopyToClipboard"
+import { packageManagers, steps, resources } from "@/pages/StateManagement/Zustand/ZustandData"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const ZustandSetup = () => {
   const [copied, setCopied] = useState(null);
-  const handleCopy = async (text, idx) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(idx);
-      setTimeout(() => setCopied(null), 1500);
-    } catch { }
-  };
+  const [selectedTabs, setSelectedTabs] = useState({});
 
   return (
     <div className="space-y-12 px-4 md:px-6 py-10">
@@ -67,21 +40,58 @@ export const ZustandSetup = () => {
               </div>
               <div className="relative">
                 <button
-                  onClick={() => handleCopy(s.command, i)}
-                  className="text-muted-foreground hover:text-green-600"
+                  onClick={() => handleCopy(
+                    typeof s.command === "string"
+                      ? s.command
+                      : s.command[selectedTabs[i] || "npm"], // pick per-step tab
+                    setCopied,
+                    i
+                  )}
+                  className="text-muted-foreground hover:text-[#319795] transition"
+                  title="Copy to clipboard"
                 >
-                  {copied === i ? <HiCheckCircle className="w-6 h-6 text-green-600" /> : <IoCopyOutline className="w-6 h-6" />}
+                  {copied === i ? (
+                    <HiCheckCircle className="w-6 h-6 text-green-600" />
+                  ) : (
+                    <IoCopyOutline className="w-6 h-6" />
+                  )}
                 </button>
                 {copied === i && (
-                  <div className="absolute -top-6 right-0 bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded shadow-sm animate-fade-in">
+                  <div className="absolute -top-6 right-0 bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded shadow-sm animate-fade-in">
                     Copied!
                   </div>
                 )}
               </div>
             </div>
-            <pre className="bg-muted/50 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+            {/* <pre className="bg-muted/50 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
               {s.command}
-            </pre>
+            </pre> */}
+            {s.all ? (
+              <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                {s.command}
+              </pre>
+            ) : (
+              <Tabs value={selectedTabs[i] || "npm"} onValueChange={(value) => setSelectedTabs((prev) => ({ ...prev, [i]: value }))} className="w-full">
+                <TabsList className="">
+                  {packageManagers.map((pm) => (
+                    <TabsTrigger key={pm.key} value={pm.key}>
+                      <span className="flex items-center gap-1 text-xs cursor-pointer">
+                        {pm.icon}
+                        {pm.label}
+                      </span>
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+
+                {packageManagers.map((pm) => (
+                  <TabsContent key={pm.key} value={pm.key}>
+                    <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                      {s.command[pm.key]}
+                    </pre>
+                  </TabsContent>
+                ))}
+              </Tabs>
+            )}
           </div>
         ))}
       </div>

@@ -1,24 +1,5 @@
-import { FaTools } from "react-icons/fa";
-import { Code, Repeat, Zap } from "lucide-react";
 import { SiRedux } from "react-icons/si";
-
-const features = [
-  {
-    title: "Modern Redux",
-    description: "RTK simplifies store setup, reduces boilerplate, and enforces best practices.",
-    icon: FaTools,
-  },
-  {
-    title: "Built-in Async Support",
-    description: "Handle async operations using `createAsyncThunk` and extraReducers.",
-    icon: Zap,
-  },
-  {
-    title: "Code Splitting Friendly",
-    description: "Slices make it easier to organize logic by domain for large-scale apps.",
-    icon: Repeat,
-  },
-];
+import { features } from "@/pages/StateManagement/ReduxToolkit/ReduxData"
 
 export const ReduxOverview = () => {
   return (

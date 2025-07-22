@@ -1,59 +1,15 @@
 import { TerminalSquare } from "lucide-react";
-// import { SiPinia } from "react-icons/si";
 import { useState } from "react";
 import { GiPineapple } from "react-icons/gi";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
-
-const steps = [
-  {
-    title: "Install Pinia",
-    command: "npm install pinia",
-    description: "Add Pinia as a dependency in your Vue 3 project.",
-  },
-  {
-    title: "Register Pinia in app",
-    command: `// main.js
-import { createApp } from 'vue';
-import { createPinia } from 'pinia';
-import App from './App.vue';
-
-const app = createApp(App);
-app.use(createPinia());
-app.mount('#app');`,
-    description: "Initialize Pinia and attach it to the Vue app instance.",
-  },
-  {
-    title: "Create a store",
-    command: `// stores/counter.js
-import { defineStore } from 'pinia';
-
-export const useCounterStore = defineStore('counter', {
-  state: () => ({ count: 0 }),
-  actions: {
-    increment() { this.count++ }
-  }
-});`,
-    description: "Define a modular store with state and actions.",
-  },
-];
-
-const resources = [
-  { name: "Pinia Docs", link: "https://pinia.vuejs.org/", description: "Official guide and API reference." },
-  { name: "Pinia GitHub", link: "https://github.com/vuejs/pinia", description: "Source code and issues." },
-  { name: "Awesome Pinia", link: "https://github.com/antfu/awesome-pinia", description: "Curated list of plugins and examples." },
-];
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { handleCopy } from "@/components/shared/CopyToClipboard"
+import { packageManagers, steps, resources } from "@/pages/StateManagement/Pinia/PiniaData"
 
 export const PiniaSetup = () => {
   const [copied, setCopied] = useState(null);
-
-  const handleCopy = async (cmd, idx) => {
-    try {
-      await navigator.clipboard.writeText(cmd);
-      setCopied(idx);
-      setTimeout(() => setCopied(null), 1500);
-    } catch { }
-  };
+  const [selectedTabs, setSelectedTabs] = useState({});
 
   return (
     <div className="space-y-12 px-4 md:px-6 py-10">
@@ -84,8 +40,15 @@ export const PiniaSetup = () => {
               </div>
               <div className="relative">
                 <button
-                  onClick={() => handleCopy(step.command, idx)}
-                  className="text-muted-foreground hover:text-primary transition"
+                  onClick={() => handleCopy(
+                    typeof step.command === "string"
+                      ? step.command
+                      : step.command[selectedTabs[idx] || "npm"], // pick per-step tab
+                    setCopied,
+                    idx
+                  )}
+                  className="text-muted-foreground hover:text-[#319795] transition"
+                  title="Copy to clipboard"
                 >
                   {copied === idx ? (
                     <HiCheckCircle className="w-6 h-6 text-green-600" />
@@ -100,9 +63,35 @@ export const PiniaSetup = () => {
                 )}
               </div>
             </div>
-            <pre className="bg-muted/40 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+            {/* <pre className="bg-muted/40 border border-[#cccccc] rounded-md p-3 mt-2 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
               {step.command}
-            </pre>
+            </pre> */}
+            {step.all ? (
+              <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                {step.command}
+              </pre>
+            ) : (
+              <Tabs value={selectedTabs[idx] || "npm"} onValueChange={(value) => setSelectedTabs((prev) => ({ ...prev, [idx]: value }))} className="w-full">
+                <TabsList className="">
+                  {packageManagers.map((pm) => (
+                    <TabsTrigger key={pm.key} value={pm.key}>
+                      <span className="flex items-center gap-1 text-xs cursor-pointer">
+                        {pm.icon}
+                        {pm.label}
+                      </span>
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+
+                {packageManagers.map((pm) => (
+                  <TabsContent key={pm.key} value={pm.key}>
+                    <pre className="bg-muted/50 border border-gray-300 rounded-md p-3 font-mono text-sm whitespace-pre-wrap overflow-x-auto">
+                      {step.command[pm.key]}
+                    </pre>
+                  </TabsContent>
+                ))}
+              </Tabs>
+            )}
           </div>
         ))}
       </div>

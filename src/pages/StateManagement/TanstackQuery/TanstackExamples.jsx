@@ -3,67 +3,11 @@ import { useState } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
 import { SiReactquery } from "react-icons/si";
-
-const examples = [
-    {
-        title: "Basic useQuery",
-        description: "Fetch user data from API.",
-        code: `import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-
-function Users() {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['users'],
-    queryFn: () => axios.get('/api/users').then(res => res.data)
-  });
-
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading users</p>;
-
-  return (
-    <ul>
-      {data.map(user => (
-        <li key={user.id}>{user.name}</li>
-      ))}
-    </ul>
-  );
-}`,
-    },
-    {
-        title: "Basic useMutation",
-        description: "Add a user with `useMutation`.",
-        code: `import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
-
-function AddUser() {
-  const mutation = useMutation({
-    mutationFn: (newUser) => axios.post('/api/users', newUser),
-    onSuccess: () => {
-      alert('User added!');
-    },
-  });
-
-  return (
-    <button onClick={() => mutation.mutate({ name: 'John' })}>
-      Add User
-    </button>
-  );
-}`,
-    },
-];
+import { handleCopy } from "@/components/shared/CopyToClipboard"
+import { examples } from "@/pages/StateManagement/TanstackQuery/TanstackData"
 
 export const TanstackExample = () => {
     const [copied, setCopied] = useState(null);
-
-    const handleCopy = async (code, idx) => {
-        try {
-            await navigator.clipboard.writeText(code);
-            setCopied(idx);
-            setTimeout(() => setCopied(null), 1500);
-        } catch (err) {
-            console.error("Copy failed:", err);
-        }
-    };
 
     return (
         <div className="space-y-12 px-4 md:px-6 py-10">
@@ -93,8 +37,9 @@ export const TanstackExample = () => {
                         </h3>
                         <div className="relative">
                             <button
-                                onClick={() => handleCopy(item.code, idx)}
-                                className="text-muted-foreground hover:text-green-600"
+                                onClick={() => handleCopy(item.code, setCopied, idx)}
+                                className="text-muted-foreground hover:text-[#319795] transition"
+                                title="Copy to clipboard"
                             >
                                 {copied === idx ? <HiCheckCircle className="w-6 h-6 text-green-600" /> : <IoCopyOutline className="w-6 h-6" />}
                             </button>

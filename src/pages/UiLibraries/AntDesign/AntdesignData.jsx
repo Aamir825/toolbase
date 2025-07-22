@@ -34,23 +34,47 @@ export const packageManagers = [
 
 export const steps = [
   {
-    title: "1. Install Ant Design",
-    command: "npm install antd",
+    title: "Install Ant Design",
+    command: {
+      npm: "npm install antd",
+      yarn: "yarn add antd",
+      pnpm: "pnpm add antd",
+      bun: "bun add antd",
+    },
     description: "Install the core Ant Design package into your project.",
   },
   {
-    title: "2. Import Styles",
-    command: `// main.jsx or App.jsx
+    title: "Import Styles",
+    command: {
+      npm: `// main.jsx or App.jsx
 import 'antd/dist/reset.css';`,
+      yarn: `// main.jsx or App.jsx
+import 'antd/dist/reset.css';`,
+      pnpm: `// main.jsx or App.jsx
+import 'antd/dist/reset.css';`,
+      bun: `// main.jsx or App.jsx
+import 'antd/dist/reset.css';`,
+    },
     description: "Import the default CSS to apply Ant Design styles.",
+    isCodeBlock: true,
   },
   {
-    title: "3. Start using components",
-    command: `import { Button } from 'antd';
+    title: "Start using components",
+    command: {
+      npm: `import { Button } from 'antd';
 
 <Button type="primary">AntD Button</Button>`,
+      yarn: `import { Button } from 'antd';
+
+<Button type="primary">AntD Button</Button>`,
+      pnpm: `import { Button } from 'antd';
+
+<Button type="primary">AntD Button</Button>`,
+      bun: `import { Button } from 'antd';
+
+<Button type="primary">AntD Button</Button>`,
+    },
     description: "Import and use components as needed from the library.",
-    isCodeBlock: true,
   },
 ];
 

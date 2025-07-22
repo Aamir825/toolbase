@@ -1,23 +1,5 @@
-import { Code, Zap, Layers } from "lucide-react";
 import { FaLeaf } from "react-icons/fa";
-
-const features = [
-  {
-    title: "Minimal & Lightweight",
-    description: "Tiny API surface (~1 KB), no boilerplate—just create and use.",
-    icon: FaLeaf,
-  },
-  {
-    title: "Global & Local State",
-    description: "Use one store or multiple dedicated ones per feature.",
-    icon: Layers,
-  },
-  {
-    title: "Built‑in React Hooks",
-    description: "Selective rendering using hooks like `useStore(state => state.foo)`.",
-    icon: Zap,
-  },
-];
+import { features } from "@/pages/StateManagement/Zustand/ZustandData"
 
 export const ZustandOverview = () => {
   return (

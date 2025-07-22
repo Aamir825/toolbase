@@ -1,74 +1,13 @@
 import { Code } from "lucide-react";
-import { FaTools } from "react-icons/fa";
 import { HiCheckCircle } from "react-icons/hi";
 import { IoCopyOutline } from "react-icons/io5";
 import { useState } from "react";
 import { SiRedux } from "react-icons/si";
-
-const examples = [
-    {
-        title: "Create a Slice",
-        description: "Using `createSlice` to define actions and reducers in one place.",
-        code: `import { createSlice } from '@reduxjs/toolkit';
-
-const counterSlice = createSlice({
-  name: 'counter',
-  initialState: { value: 0 },
-  reducers: {
-    increment: (state) => { state.value += 1 },
-    decrement: (state) => { state.value -= 1 },
-    reset: (state) => { state.value = 0 },
-  }
-});
-
-export const { increment, decrement, reset } = counterSlice.actions;
-export default counterSlice.reducer;`,
-    },
-    {
-        title: "Configure Store",
-        description: "Setting up the store using `configureStore`.",
-        code: `import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './features/counterSlice';
-
-export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
-});`,
-    },
-    {
-        title: "Access & Dispatch in Component",
-        description: "Using `useSelector` and `useDispatch` in a functional component.",
-        code: `import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement } from './features/counterSlice';
-
-function Counter() {
-  const count = useSelector((state) => state.counter.value);
-  const dispatch = useDispatch();
-
-  return (
-    <div>
-      <h1>{count}</h1>
-      <button onClick={() => dispatch(increment())}>+</button>
-      <button onClick={() => dispatch(decrement())}>-</button>
-    </div>
-  );
-}`,
-    },
-];
+import { handleCopy } from "@/components/shared/CopyToClipboard"
+import { examples } from "@/pages/StateManagement/ReduxToolkit/ReduxData"
 
 export const ReduxExample = () => {
     const [copied, setCopied] = useState(null);
-
-    const handleCopy = async (code, idx) => {
-        try {
-            await navigator.clipboard.writeText(code);
-            setCopied(idx);
-            setTimeout(() => setCopied(null), 1500);
-        } catch (err) {
-            console.error("Copy failed:", err);
-        }
-    };
 
     return (
         <div className="space-y-12 px-4 md:px-6 py-10">
@@ -98,8 +37,9 @@ export const ReduxExample = () => {
                         </h3>
                         <div className="relative">
                             <button
-                                onClick={() => handleCopy(item.code, idx)}
-                                className="text-muted-foreground hover:text-primary transition"
+                                onClick={() => handleCopy(item.code, setCopied, idx)}
+                                className="text-muted-foreground hover:text-[#319795] transition"
+                                title="Copy to clipboard"
                             >
                                 {copied === idx ? (
                                     <HiCheckCircle className="w-6 h-6 text-green-600" />
